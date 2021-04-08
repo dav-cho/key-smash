@@ -13,7 +13,7 @@ Me after project week.
 ## Post-MVP / Stretch Goals
 
 ## Wireframes
-![App Wireframe](/proposal/typing-speed-mockup.png)
+![App Wireframe](/proposal/main-page-wireframe.png)
 
 ## Technologies Used
 
@@ -32,10 +32,10 @@ Me after project week.
 |         Task         | Priority | Estimated Time | Time Invested | Actual Time |
 |----------------------|:--------:|:--------------:|:-------------:|:-----------:|
 | Project Proposal     |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
-| README.md            |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
-| Wireframing          |    M     |     2 hrs      |     x hrs     |    x hrs    |
-| API Research         |    M     |     1 hr       |     x hrs     |    x hrs    |
-| Initial HTML & CSS   |    H     |     1 hr       |     x hrs     |    x hrs    |
+| README.md            |    H     |     2 hrs      |     1 hrs     |    1 hrs    |
+| Wireframing          |    M     |     2 hrs      |     1 hrs     |    1 hrs    |
+| API Research         |    M     |     1 hrs      |     x hrs     |    x hrs    |
+| Initial HTML & CSS   |    H     |     1 hrs      |     x hrs     |    x hrs    |
 | Basic JS & API Calls |    H     |     2 hrs      |     x hrs     |    x hrs    |
 | User Text Input      |    H     |     2 hrs      |     x hrs     |    x hrs    |
 | Typing Prompt        |    H     |     6 hrs      |     x hrs     |    x hrs    |
