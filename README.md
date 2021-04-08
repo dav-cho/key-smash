@@ -19,7 +19,7 @@ Me after project week.
 
 ## Project Schedule
 |      Day      |            Deliverable           |   Status   |     
-|:--------------|:--------------------------------:|:----------:|
+|---------------|----------------------------------|:----------:|
 | April 7       | Project Proposal                 |  Complete  |
 | April 8       | README / Wireframes / Find API   | Incomplete |
 | April 9       | Initial HTML, CSS & Javascript   | Incomplete |
@@ -30,7 +30,7 @@ Me after project week.
 
 ## Timeframes
 |         Task         | Priority | Estimated Time | Time Invested | Actual Time |
-|:---------------------|:--------:|:--------------:|:-------------:|:-----------:|
+|----------------------|:--------:|:--------------:|:-------------:|:-----------:|
 | Project Proposal     |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
 | README.md            |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
 | Wireframing          |    M     |     2 hrs      |     x hrs     |    x hrs    |
