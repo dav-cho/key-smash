@@ -4,7 +4,7 @@
 
 
 
-![Jack Nicholson frozen in The Shining] (/proposal/winter-1.gif)
+![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif)
 Me after project week.
 ## Installation Instructions
 
@@ -13,7 +13,7 @@ Me after project week.
 ## Post-MVP / Stretch Goals
 
 ## Wireframes
-![App Wireframe] (/proposal/typing-speed-mockup.png)
+![App Wireframe](/proposal/typing-speed-mockup.png)
 
 ## Technologies Used
 
