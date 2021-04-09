@@ -14,3 +14,5 @@ async function getLorem() {
   const dummy = await res.json();
   console.log('~ dummy', dummy)
 }
+
+getLorem();
