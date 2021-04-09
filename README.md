@@ -33,16 +33,17 @@ Me after project week.
 |----------------------|:--------:|:--------------:|:-------------:|:-----------:|
 | Project Proposal     |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
 | README.md            |    H     |     2 hrs      |     1 hrs     |    1 hrs    |
-| Wireframing          |    M     |     2 hrs      |     1 hrs     |    1 hrs    |
-| API Research         |    M     |     1 hrs      |     x hrs     |    x hrs    |
-| Initial HTML & CSS   |    H     |     1 hrs      |     x hrs     |    x hrs    |
-| Basic JS & API Calls |    H     |     2 hrs      |     x hrs     |    x hrs    |
-| User Text Input      |    H     |     2 hrs      |     x hrs     |    x hrs    |
+| Wireframing          |    M     |     2 hrs      |     2 hrs     |    2 hrs    |
+| Initial HTML & CSS   |    M     |     1 hrs      |     x hrs     |    x hrs    |
+| Basic JS             |    H     |     2 hrs      |     x hrs     |    x hrs    |
+| User Text Input      |    H     |     3 hrs      |     x hrs     |    x hrs    |
 | Typing Prompt        |    H     |     6 hrs      |     x hrs     |    x hrs    |
-| Typing Stats Cards   |    M     |     4 hrs      |     x hrs     |    x hrs    |
+| API Research         |    L     |     1 hrs      |     x hrs     |    x hrs    |
+| API Calls            |    L     |     4 hrs      |     x hrs     |    x hrs    |
+| Typing Stats Cards   |    L     |     4 hrs      |     x hrs     |    x hrs    |
 | Modals               |    L     |     3 hrs      |     x hrs     |    x hrs    |
 | CSS                  |    H     |     5 hrs      |     x hrs     |    x hrs    |
-| Totals               |    x     |     x hrs      |     x hrs     |    x hrs    |
+| Totals               |    x     |     35 hrs     |     5 hrs     |    5 hrs    |
 
 ## Code Snippet
 

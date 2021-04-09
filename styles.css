@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Fugaz+One&display=swap');
+
+/* html {
+  width: 100%;
+} */
+
+body {
+  text-align: center;
+  /* width: 100%; */
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; */
+}
+
+header {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  /* height: 10rem; */
+  /* width: 100%; */
+  /* justify-content: center; */
+}
+
+#banner {
+  width: 100%;
+  padding: 3rem;
+}
+
+#nav-main {
+  font-family: 'Fugaz One';
+  width: 100%;
+  background-color: yellow;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  /* flex-wrap: nowrap; */
+  /* margin: 0; */
+  /* justify-content: space-between; */
+}
+
+#nav-logo {
+  /* flex-grow: 1; */
+  /* margin: 0 0 0.25rem 0.25rem; */
+  margin-bottom: 0.2rem;
+}
+
+.nav-link {
+  align-self: flex-end;
+}
+
+#nav-button {
+  font-family: 'Fugaz One';
+  font-size: 1.25rem;
+  background-image: url('./img/button-flame-register.png');
+  background-size: contain;
+  padding: 0.65rem 1.5rem 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  /* background-repeat: no-repeat; */
+}
