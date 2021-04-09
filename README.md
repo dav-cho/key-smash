@@ -35,9 +35,12 @@ Me after project week.
 | README.md            |    H     |     2 hrs      |     1 hrs     |    1 hrs    |
 | Wireframing          |    M     |     2 hrs      |     2 hrs     |    2 hrs    |
 | Initial HTML & CSS   |    M     |     2 hrs      |     3 hrs     |    3 hrs    |
-| Basic JS             |    H     |     3 hrs      |     2 hrs     |    2 hrs    |
-| User Text Input      |    H     |     3 hrs      |     x hrs     |    x hrs    |
-| Typing Prompt        |    H     |     6 hrs      |     x hrs     |    x hrs    |
+| Basic JS             |    H     |     3 hrs      |     1 hrs     |    1 hrs    |
+| User Text Input      |    H     |     3 hrs      |     1 hrs     |    1 hrs    |
+| Typing Prompt        |    H     |     6 hrs      |     1 hrs     |    1 hrs    |
+| Word Counter         |    H     |     1 hrs      |     x hrs     |    x hrs    |
+| Timer                |    H     |     2 hrs      |     x hrs     |    x hrs    |
+| Mistakes/Accuracy    |    L     |     1 hrs      |     x hrs     |    x hrs    |
 | API Research         |    L     |     1 hrs      |     x hrs     |    x hrs    |
 | API Calls            |    L     |     4 hrs      |     x hrs     |    x hrs    |
 | Typing Stats Cards   |    L     |     4 hrs      |     x hrs     |    x hrs    |
