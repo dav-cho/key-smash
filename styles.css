@@ -118,17 +118,27 @@ main {
 }
 
 #prompt {
-  font-size: 4rem;
+  font-family: sans-serif;
+  font-size: 2rem;
   text-align: center;
   width: 70%;
   height: 8rem;
   margin: 1.5rem auto;
   border: 0.5rem solid black;
   border-radius: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-#prompt:focus {
+/* #prompt:focus {
   outline: none;
+} */
+
+.word-tile {
+  padding: 0.15rem 1rem;
+  border: 1px solid blue;
 }
 
 #user-input {
