@@ -1,0 +1,38 @@
+{
+  "easy": [
+    "duis eu massa sit amet mauris malesuada consequat ut aliquet ipsum eget est ornare nec mollis lorem fringilla sed posuere",
+    "aliquam porttitor ligula non placerat aliquet ligula dui feugiat quam imperdiet mattis libero neque vitae sem nulla vulput",
+    "nulla sed arcu vitae nisl commodo volutpat aliquam eu velit nec ex tincidunt feugiat sed et erat lorem ipsum dolor sitame",
+    "quisque diam nisl gravida id pulvinar vel semper vitae libero nullam auctor est lacus eu accumsan dolor pretium sit amet",
+    "aenean pellentesque quam vel enim tincidunt eu tincidunt est molestie mauris sagittis scelerisque eros vel semper diam",
+    "duis eu massa sit amet mauris malesuada consequat ut aliquet ipsum eget est ornare nec mollis lorem fringilla sed posuere",
+    "elit non sollicitudin lacinia nulla mauris consequat odio non porta orci libero at orci phasellus vitae neque posuere fermentum",
+    "dui consequat porta ligula sed ut efficitur lorem nulla congue elit nisi ut dictum nisi commodo et vivamus",
+    "cursus ex cras mattis eget dolor sit amet tempor ut id arcu vel tellus sollicitudin aliquam quis a libero",
+    "phasellus eu magna semper rhoncus mi sed pulvinar augue praesent et tincidunt massa non faucibus sem donec bibendum",
+    "ac tincidunt aliquam fusce a efficitur tortor quisque rhoncus ex id porta facilisis morbi finibus neque sed ipsum congue",
+    "accumsan lectus pellentesque donec scelerisque velit ac faucibus fringilla nunc efficitur augue id ultricies lacinia quam nisl rhoncus metus",
+    "dapibus quam risus ultricies diam integer nec sodales lectus blandit ultrices augue maecenas cursus in tellus sed euismod nullam",
+    "aliquam porttitor ligula non placerat aliquet ligula dui feugiat quam imperdiet mattis libero neque vitae sem nulla vulputate nunc",
+    "ex in pretium leo ultrices a in hac habitasse platea dictumst aenean accumsan at sapien sed mattis vestibulum ante",
+    "ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; nulla sed lacus enim suspendisse potenti donec",
+    "dictum bibendum arcu et laoreet augue efficitur vitae donec nec nisi est mauris consequat velit et posuere tincidunt nisl",
+    "lectus condimentum lectus vel euismod neque mauris eget neque maecenas eu ullamcorper eros ut viverra ante integer et est",
+    "sed nunc porttitor sollicitudin etiam sit amet cursus metus curabitur at tincidunt massa aenean non hendrerit enim et congue",
+    "turpis nulla aliquet massa ac fringilla eleifend mauris ex facilisis massa sit amet mollis risus enim et turpis"
+  ],
+  "medium": [
+    "duis eu massa sit amet mauris malesuada consequat. ut aliquet ipsum eget est ornare, nec mollis lorem fringilla. sed posuer",
+    "aliquam porttitor, ligula non placerat aliquet, ligula dui feugiat quam, imperdiet mattis libero neque vitae sem. nullavul",
+    "nulla sed arcu vitae nisl commodo volutpat. aliquam eu velit nec ex tincidunt feugiat sed et erat. lorem ipsum dolor sitam",
+    "quisque diam nisl, gravida id pulvinar vel, semper vitae libero. nullam auctor est lacus, eu accumsan dolor pretium sitame",
+    "aenean pellentesque quam vel enim tincidunt, eu tincidunt est molestie. mauris sagittis scelerisque eros, vel semper diamv"
+  ],
+  "hard": [
+    "Duis eu massa sit amet mauris malesuada consequat. Ut aliquet ipsum eget est ornare, nec mollis lorem fringilla. Sed posuer",
+    "Aliquam porttitor, ligula non placerat aliquet, ligula dui feugiat quam, imperdiet mattis libero neque vitae sem. Nullavul",
+    "Nulla sed arcu vitae nisl commodo volutpat. Aliquam eu velit nec ex tincidunt feugiat sed et erat. Lorem ipsum dolor sitam",
+    "Quisque diam nisl, gravida id pulvinar vel, semper vitae libero. Nullam auctor est lacus, eu accumsan dolor pretium sitame",
+    "Aenean pellentesque quam vel enim tincidunt, eu tincidunt est molestie. Mauris sagittis scelerisque eros, vel semper diamv"
+  ]
+}
