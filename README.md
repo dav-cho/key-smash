@@ -34,7 +34,7 @@ Me after project week.
 | Project Proposal     |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
 | README.md            |    H     |     2 hrs      |     1 hrs     |    1 hrs    |
 | Wireframing          |    M     |     2 hrs      |     2 hrs     |    2 hrs    |
-| Initial HTML & CSS   |    M     |     1 hrs      |     x hrs     |    x hrs    |
+| Initial HTML & CSS   |    M     |     2 hrs      |     3 hrs     |    3 hrs    |
 | Basic JS             |    H     |     2 hrs      |     x hrs     |    x hrs    |
 | User Text Input      |    H     |     3 hrs      |     x hrs     |    x hrs    |
 | Typing Prompt        |    H     |     6 hrs      |     x hrs     |    x hrs    |

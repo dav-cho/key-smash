@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Fugaz+One&display=swap');
 
-/* html {
+html {
   width: 100%;
-} */
+  margin: 0;
+  padding: 0;
+  padding-bottom: 4rem;
+}
 
 body {
   text-align: center;
-  /* width: 100%; */
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center; */
+  width: 100%;
+  margin: 0;
+  /* background-color: black; */
 }
 
 header {
@@ -18,9 +19,6 @@ header {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  /* height: 10rem; */
-  /* width: 100%; */
-  /* justify-content: center; */
 }
 
 #banner {
@@ -28,35 +26,60 @@ header {
   padding: 3rem;
 }
 
+/* #banner h1 {
+  font-family: 'Faster One';
+  font-size: 5rem;
+  background-image: linear-gradient(0deg, #D70000 0%, #FF7A00 85%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-stroke: 0.2rem transparent;
+  -moz-text-stroke: 0.2rem transparent;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  background-clip: text;
+} */
+
 #nav-main {
   font-family: 'Fugaz One';
   width: 100%;
-  background-color: yellow;
+  background-color: #ECD400;
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-content: center;
-  /* flex-wrap: nowrap; */
-  /* margin: 0; */
-  /* justify-content: space-between; */
 }
 
 #nav-logo {
-  /* flex-grow: 1; */
-  /* margin: 0 0 0.25rem 0.25rem; */
   margin-bottom: 0.2rem;
+  width: 30%;
+  object-fit: contain;
 }
 
 #nav-links {
-  /* display: flex; */
-  /* flex-wrap: nowrap; */
-  /* justify-content: space-between; */
-  /* align-items: center; */ 
 }
 
 .nav-link {
-  margin: 0 0.5rem
+  font-size: 1.15rem;
+  padding: 0 0.75rem;
+  text-decoration: none;
+  color: black;
+  background-image: linear-gradient(0deg, #D70000 0%, #FF7A00 85%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-stroke: 0.2rem transparent;
+  -moz-text-stroke: 0.2rem transparent;
+  /* -webkit-text-fill-color: transparent; */
+  /* -moz-text-fill-color: transparent; */
+  /* background-clip: text; */
+  /* transition: transform 0.2s ease-in-out; */
 }
+
+/* .nav-link:hover { */
+  /* transform: scale(1.5); */
+  /* text-decoration: underline; */
+  /* border-bottom: 0.2rem solid black; */
+  /* color: #D70000; */
+/* } */
 
 #nav-button {
   font-family: 'Fugaz One';
@@ -68,5 +91,49 @@ header {
   border: none;
   border-radius: 0.5rem;
   color: white;
-  /* background-repeat: no-repeat; */
+}
+
+main {
+  font-family: 'Fugaz One';
+}
+
+#game-mode h2 {
+  font-size: 3rem;
+  margin: 1.5rem;
+  background-image: linear-gradient(0deg, #D70000 0%, #FF7A00 85%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-stroke: 0.2rem transparent;
+  -moz-text-stroke: 0.2rem transparent;
+  -webkit-text-stroke-width: 0.50rem;
+  -moz-text-stroke-width: 0.5rem;
+}
+
+#stats {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#prompt {
+  width: 70%;
+  height: 8rem;
+  margin: 1.5rem auto;
+  border: 0.5rem solid black;
+  border-radius: 1.5rem;
+}
+
+#user-input {
+  font-size: 2rem;
+  width: 50%;
+  height: 4rem;
+  border: 0.4rem solid black;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+#user-input:focus {
+  /* outline: none; */
 }
