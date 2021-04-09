@@ -4,7 +4,7 @@
 
 
 
-![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif =width)  
+![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif =100px)  
 Me after project week.
 ## Installation Instructions
 

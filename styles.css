@@ -74,12 +74,12 @@ header {
   /* transition: transform 0.2s ease-in-out; */
 }
 
-/* .nav-link:hover { */
+.nav-link:hover {
   /* transform: scale(1.5); */
   /* text-decoration: underline; */
-  /* border-bottom: 0.2rem solid black; */
+  border-bottom: 0.2rem solid black;
   /* color: #D70000; */
-/* } */
+}
 
 #nav-button {
   font-family: 'Fugaz One';
@@ -118,6 +118,8 @@ main {
 }
 
 #prompt {
+  font-size: 4rem;
+  text-align: center;
   width: 70%;
   height: 8rem;
   margin: 1.5rem auto;
@@ -125,15 +127,19 @@ main {
   border-radius: 1.5rem;
 }
 
+#prompt:focus {
+  outline: none;
+}
+
 #user-input {
   font-size: 2rem;
+  text-align: center;
   width: 50%;
   height: 4rem;
   border: 0.4rem solid black;
   border-radius: 1rem;
-  text-align: center;
 }
 
 #user-input:focus {
-  /* outline: none; */
+  outline: none;
 }
