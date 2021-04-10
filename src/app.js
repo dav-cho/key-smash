@@ -6,10 +6,9 @@ const timerDisplay = document.getElementById('timer');
 const scoreDisplay = document.getElementById('score');
 
 let wordCount = 0;
-let time = 63;
+let time = 5;
 let score = 0;
 let difficulty = 'medium';
-let gameActive = false;
 
 /**
  * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
@@ -77,20 +76,19 @@ function updateTimer() {
   const seconds = time % 60;
 
   if (time < 0) {
-    // move to gameOver function?
+    console.log('~ time', time);
     console.log('game over');
-    gameActive = false;
-    // TODO: clearInterval?
-    return;
+    // timerDisplay.innerText = '00:00';
+    gameOver();
+  } else {
+    minutes < 10 && seconds < 10
+      ? (timerDisplay.innerText = `0${minutes}:0${seconds}`)
+      : minutes < 10 && seconds >= 10
+      ? (timerDisplay.innerText = `0${minutes}:${seconds}`)
+      : (timerDisplay.innerText = `${minutes}:${seconds}`);
+
+    time--;
   }
-
-  minutes < 10 && seconds < 10
-    ? (timerDisplay.innerText = `0${minutes}:0${seconds}`)
-    : minutes < 10 && seconds >= 10
-    ? (timerDisplay.innerText = `0${minutes}:${seconds}`)
-    : (timerDisplay.innerText = `${minutes}:${seconds}`);
-
-  time--;
 }
 
 /**
@@ -130,12 +128,11 @@ function updateScore(currentWord) {
 }
 
 /**
- * if gameActive is false and currentPrompt is empty
- * starts timer and renders prompt on text input focus / sets gameActive to true
+ * if currentPrompt is empty and time > 0
+ * starts timer and renders prompt on text input focus
  **/
 function handleInputFocus() {
-  if (!gameActive && !currentPrompt.length) {
-    gameActive = true;
+  if (!currentPrompt.length && time >= 0) {
     renderPrompt();
     setInterval(updateTimer, 1000);
   }
@@ -146,7 +143,8 @@ function handleInputFocus() {
  * invokes updateScore, updateWordCountDisplay, increment wordCount
  **/
 function handleEnter(e) {
-  if (e.key === 'Enter' || (e.key === ' ' && gameActive)) {
+  if ((e.key === 'Enter' || e.key === ' ') && time >= 0) {
+    console.log('~ time', time);
     const currentWord = userInput.value.trim();
 
     currentPrompt.forEach(div => {
@@ -173,15 +171,14 @@ function handleInput() {
  * TODO: handleInputFocusOut
  **/
 function handleInputFocusOut() {
-  // stops timer when input loses focus and gameActive to false
+  // stops timer when input loses focus
 }
 
 /**
  * TODO: gameOver: stops timer, toggles results modal and ends game
  **/
 function gameOver() {
-  gameActive = false;
-  // clearInterval(updateTimer);
+  clearInterval(updateTimer);
 }
 
 /**
