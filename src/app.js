@@ -11,97 +11,7 @@ let score = 0;
 let difficulty = 'medium';
 
 /**
- * fetch lorem ipsum text from dummy json
- * TODO: fetch text from API
- **/
-async function getLorem() {
-  try {
-    const res = await fetch('src/dummy.json');
-    const dummy = await res.json();
-    console.log('SUCCESS', res);
-
-    return dummy[difficulty][Math.floor(Math.random() * 20)]
-      .split(' ')
-      .slice(0, 5); // sliced length to 5 for testing
-  } catch (err) {
-    console.log('ERROR', err);
-  }
-}
-
-/**
- * render prompt
- **/
-async function renderPrompt() {
-  const words = await getLorem();
-
-  words.forEach(word => {
-    const wordTile = document.createElement('div');
-    wordTile.classList.add('word-tile');
-    wordTile.id = word;
-    wordTile.innerText = word;
-    prompt.append(wordTile);
-  });
-}
-
-/**
- * timer function
- **/
-function timer() {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-
-  if (time < 0) {
-    console.log('game over');
-    return;
-  }
-
-  minutes < 10 && seconds < 10
-    ? (timerDisplay.innerText = `0${minutes}:0${seconds}`)
-    : minutes < 10 && seconds >= 10
-    ? (timerDisplay.innerText = `0${minutes}:${seconds}`)
-    : (timerDisplay.innerText = `${minutes}:${seconds}`);
-
-  time--;
-}
-
-/**
- * start timer and renders prompt text when text input is focused
- **/
-function handleFocus() {
-  if (!currentPrompt.length) renderPrompt();
-
-  setInterval(timer, 1000);
-}
-
-/**
- * TODO: clears text prompt and stops timer when text input loses focus
- **/
-function clearGame(e) {
-  console.log('~ e', e);
-
-  clearInterval(timer);
-}
-
-/**
- * TODO: use for letter highlighting
- **/
-function handleInput() {}
-
-/**
- * change the word count display
- **/
-function renderWordCountDisplay() {
-  wordCount < 10
-    ? (wordCountDisplay.innerText = `000${wordCount}`)
-    : wordCount < 100
-    ? (wordCountDisplay.innerText = `00${wordCount}`)
-    : wordCount < 1000
-    ? (wordCountDisplay.innerText = `0${wordCount}`)
-    : (wordCountDisplay.innerText = `${wordCount}`);
-}
-
-/**
- * scrabble letter scores (uppercase letters get ~1.5x)
+ * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
  **/
 const letterScores = {
   11: 'aeilnorstu',
@@ -121,26 +31,122 @@ const letterScores = {
 };
 
 /**
- * check score for matched words
+ * fetches lorem ipsum text from dummy json
+ * TODO: fetch text from API
+ **/
+async function getPrompt() {
+  try {
+    const res = await fetch('src/dummy.json');
+    const dummy = await res.json();
+    console.log('SUCCESS', res);
+
+    // TODO: generate random number 0 - 14 for string slice length 5 (string length is 20);
+    // const sliceNum = Math.floor(Math.random() * 14);
+
+    const fetchedPrompt = dummy[difficulty][Math.floor(Math.random() * 20)]
+      .split(' ')
+      .slice(0, 5); // sliced length to 5 for testing. final - 5/10/15/20?
+
+    return fetchedPrompt;
+  } catch (err) {
+    console.log('ERROR', err);
+  }
+}
+
+/**
+ * renders prompt
+ **/
+async function renderPrompt() {
+  const words = await getPrompt();
+
+  words.forEach(word => {
+    const promptTile = document.createElement('div');
+    promptTile.classList.add('word-tile');
+    promptTile.id = word;
+    promptTile.innerText = word;
+    prompt.append(promptTile);
+  });
+}
+
+/**
+ * timer function
+ **/
+function timer() {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+
+  if (time < 0) {   // move to clear game function? game over function?
+    console.log('game over');
+    // TODO: clearInterval?
+    return;
+  }
+
+  minutes < 10 && seconds < 10
+    ? (timerDisplay.innerText = `0${minutes}:0${seconds}`)
+    : minutes < 10 && seconds >= 10
+    ? (timerDisplay.innerText = `0${minutes}:${seconds}`)
+    : (timerDisplay.innerText = `${minutes}:${seconds}`);
+
+  time--;
+}
+
+/**
+ * starts timer and renders prompt text when text input is focused
+ **/
+function handleFocus() {
+  if (!currentPrompt.length) renderPrompt();
+
+  setInterval(timer, 1000);
+}
+
+/**
+ * TODO: clears text prompt and stops timer when text input loses focus
+ **/
+function clearGame(e) {
+
+  clearInterval(timer);
+}
+
+/**
+ * TODO: use for letter highlighting / consider renaming function
+ **/
+function handleInput() {
+  // split words to characters array?
+}
+
+/**
+ * changes the word count display
+ **/
+function updateWordCountDisplay() {
+  wordCount < 10
+    ? (wordCountDisplay.innerText = `000${wordCount}`)
+    : wordCount < 100
+    ? (wordCountDisplay.innerText = `00${wordCount}`)
+    : wordCount < 1000
+    ? (wordCountDisplay.innerText = `0${wordCount}`)
+    : (wordCountDisplay.innerText = `${wordCount}`);
+}
+
+/**
+ * checks score for matched words and updates total score
  **/
 function updateScore(currentWord) {
-  const wordArr = currentWord.split('');
-  console.log('~ wordArr', wordArr);
-  console.log('~ scoreDisplay innerText', scoreDisplay.innerText);
+  const wordArray = currentWord.split('');
 
-  wordArr.forEach(letter => {
+  wordArray.forEach(letter => {
     for (const letterScore in letterScores) {
       if (letterScores[letterScore].includes(letter)) score += +letterScore;
     }
   });
 
-  renderScoreDisplay();
+  updateScoreDisplay();
 }
 
 /**
- * change score count display
+ * changes score count display
+ * TODO: combine with updateScore?
  **/
-function renderScoreDisplay() {
+function updateScoreDisplay() {
   score < 10
     ? (scoreDisplay.innerText = `000${score}`)
     : score < 100
@@ -151,7 +157,8 @@ function renderScoreDisplay() {
 }
 
 /**
- * check for matching word on enter or space keydown event
+ * checks for matching word / removes prompTile if word matches
+ * invokes updateScore, updateWordCountDisplay, increment wordCount
  **/
 function handleEnter(e) {
   if (e.key === 'Enter' || e.key === ' ') {
@@ -163,7 +170,7 @@ function handleEnter(e) {
         div.remove();
         userInput.value = null;
         wordCount++;
-        renderWordCountDisplay();
+        updateWordCountDisplay();
       }
     });
     // if prompt is empty, render new prompt
@@ -213,30 +220,3 @@ userInput.addEventListener('focusout', clearGame);
 //   25: q,
 //   26: z,
 // };
-
-// const e = 1;
-// const t = 2;
-// const a = 3;
-// const o = 4;
-// const n = 5;
-// const i = 6;
-// const h = 7;
-// const s = 8;
-// const r = 9;
-// const l = 10;
-// const d = 11;
-// const u = 12;
-// const c = 13;
-// const m = 14;
-// const w = 15;
-// const y = 16;
-// const f = 17;
-// const g = 18;
-// const p = 19;
-// const b = 20;
-// const v = 21;
-// const k = 22;
-// const j = 23;
-// const x = 24;
-// const q = 25;
-// const z = 26;
