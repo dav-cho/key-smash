@@ -3,11 +3,12 @@ const currentPrompt = prompt.childNodes;
 const userInput = document.getElementById('user-input');
 const wordCountDisplay = document.getElementById('word-count');
 const timerDisplay = document.getElementById('timer');
-// const mistakesDisplay = document.getElementById('mistakes');
+const scoreDisplay = document.getElementById('score');
 
 let wordCount = 0;
 let time = 63;
-let difficulty = 'easy';
+let score = 0;
+let difficulty = 'medium';
 
 /**
  * fetch lorem ipsum text from dummy json
@@ -64,7 +65,7 @@ function timer() {
 }
 
 /**
- * starts timer and renders prompt text when text input is focused
+ * start timer and renders prompt text when text input is focused
  **/
 function handleFocus() {
   if (!currentPrompt.length) renderPrompt();
@@ -87,32 +88,87 @@ function clearGame(e) {
 function handleInput() {}
 
 /**
+ * change the word count display
+ **/
+function renderWordCountDisplay() {
+  wordCount < 10
+    ? (wordCountDisplay.innerText = `000${wordCount}`)
+    : wordCount < 100
+    ? (wordCountDisplay.innerText = `00${wordCount}`)
+    : wordCount < 1000
+    ? (wordCountDisplay.innerText = `0${wordCount}`)
+    : (wordCountDisplay.innerText = `${wordCount}`);
+}
+
+/**
+ * scrabble letter scores (uppercase letters get ~1.5x)
+ **/
+const letterScores = {
+  11: 'aeilnorstu',
+  17: 'AEILNORSTU',
+  22: 'dg',
+  33: 'DG',
+  33: 'bcmp',
+  59: 'BCMP',
+  44: 'fhvwy',
+  66: 'FHVWY',
+  55: 'k',
+  82: 'K',
+  88: 'jx',
+  132: 'JX',
+  100: 'qz',
+  150: 'QZ',
+};
+
+/**
+ * check score for matched words
+ **/
+function updateScore(currentWord) {
+  const wordArr = currentWord.split('');
+  console.log('~ wordArr', wordArr);
+  console.log('~ scoreDisplay innerText', scoreDisplay.innerText);
+
+  wordArr.forEach(letter => {
+    for (const letterScore in letterScores) {
+      if (letterScores[letterScore].includes(letter)) score += +letterScore;
+    }
+  });
+
+  renderScoreDisplay();
+}
+
+/**
+ * change score count display
+ **/
+function renderScoreDisplay() {
+  score < 10
+    ? (scoreDisplay.innerText = `000${score}`)
+    : score < 100
+    ? (scoreDisplay.innerText = `00${score}`)
+    : score < 1000
+    ? (scoreDisplay.innerText = `0${score}`)
+    : (scoreDisplay.innerText = `${score}`);
+}
+
+/**
  * check for matching word on enter or space keydown event
  **/
 function handleEnter(e) {
   if (e.key === 'Enter' || e.key === ' ') {
+    const currentWord = userInput.value.trim();
+
     currentPrompt.forEach(div => {
-      if (div.innerText === userInput.value.trim()) {
+      if (div.innerText === currentWord) {
+        updateScore(currentWord);
         div.remove();
         userInput.value = null;
         wordCount++;
-        renderWordCount();
+        renderWordCountDisplay();
       }
     });
     // if prompt is empty, render new prompt
     if (!currentPrompt.length) renderPrompt();
   }
-}
-
-/**
- * word count display function
- **/
-function renderWordCount() {
-  wordCount < 10
-    ? (wordCountDisplay.innerText = `00${wordCount}`)
-    : wordCount < 100
-    ? (wordCountDisplay.innerText = `0${wordCount}`)
-    : (wordCountDisplay.innerText = `${wordCount}`);
 }
 
 /**
@@ -127,38 +183,37 @@ userInput.addEventListener('focusout', clearGame);
 // startStop.addEventListener('click', changePrompt);
 
 /**
- * Scrabble letter scores for scoring points
- **/
-const a = 1;
-const e = 1;
-const i = 1;
-const l = 1;
-const n = 1;
-const o = 1;
-const r = 1;
-const s = 1;
-const t = 1;
-const u = 1;
-const d = 2;
-const g = 2;
-const b = 3;
-const c = 3;
-const m = 3;
-const p = 3;
-const f = 4;
-const h = 4;
-const v = 4;
-const w = 4;
-const y = 4;
-const k = 5;
-const j = 8;
-const x = 8;
-const q = 10;
-const z = 10;
-
-/**
  * letter scores by frequency in english dictionary
  **/
+// const letterScore = {
+//   1: e,
+//   2: t,
+//   3: a,
+//   4: o,
+//   5: n,
+//   6: i,
+//   7: h,
+//   8: s,
+//   9: r,
+//   10: l,
+//   11: d,
+//   12: u,
+//   13: c,
+//   14: m,
+//   15: w,
+//   16: y,
+//   17: f,
+//   18: g,
+//   19: p,
+//   20: b,
+//   21: v,
+//   22: k,
+//   23: j,
+//   24: x,
+//   25: q,
+//   26: z,
+// };
+
 // const e = 1;
 // const t = 2;
 // const a = 3;

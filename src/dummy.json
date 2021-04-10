@@ -22,17 +22,32 @@
     "turpis nulla aliquet massa ac fringilla eleifend mauris ex facilisis massa sit amet mollis risus enim et turpis"
   ],
   "medium": [
-    "duis eu massa sit amet mauris malesuada consequat. ut aliquet ipsum eget est ornare, nec mollis lorem fringilla. sed posuer",
-    "aliquam porttitor, ligula non placerat aliquet, ligula dui feugiat quam, imperdiet mattis libero neque vitae sem. nullavul",
-    "nulla sed arcu vitae nisl commodo volutpat. aliquam eu velit nec ex tincidunt feugiat sed et erat. lorem ipsum dolor sitam",
-    "quisque diam nisl, gravida id pulvinar vel, semper vitae libero. nullam auctor est lacus, eu accumsan dolor pretium sitame",
-    "aenean pellentesque quam vel enim tincidunt, eu tincidunt est molestie. mauris sagittis scelerisque eros, vel semper diamv"
+   "Duis eu massa sit amet mauris malesuada consequat Ut aliquet ipsum eget est ornare nec mollis lorem fringilla Sed",
+   "posuere elit non sollicitudin lacinia nulla mauris consequat odio non porta orci libero at orci Phasellus vitae neque posuere fermentum",
+   "dui consequat porta ligula Sed ut efficitur lorem Nulla congue elit nisi ut dictum nisi commodo et Vivamus ",
+   "cursus ex Cras mattis eget dolor sit amet tempor Ut id arcu vel tellus sollicitudin aliquam quis a libero",
+   "Phasellus eu magna semper rhoncus mi sed pulvinar augue Praesent et tincidunt massa non faucibus sem Donec bibendum ",
+   "tincidunt aliquam Fusce a efficitur tortor Quisque rhoncus ex id porta facilisis Morbi finibus neque sed ipsum congue ",
+   "accumsan lectus pellentesque Donec scelerisque velit ac faucibus fringilla Nunc efficitur augue id ultricies lacinia quam nisl rhoncus metus",
+   "dapibus quam risus ultricies diam Integer nec sodales lectus blandit ultrices augue Maecenas cursus",
+   "Aliquam porttitor ligula non placerat aliquet ligula dui feugiat quam imperdiet mattis libero neque vitae sem Nulla vulputate nunc",
+   "pretium leo ultrices a In hac habitasse platea dictumst Aenean accumsan at sapien sed mattis Vestibulum ante ipsum",
+   "primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla sed lacus enim Suspendisse potenti Donec dictum",
+   "bibendum arcu et laoreet augue efficitur vitae Donec nec nisi est Mauris consequat velit et posuere tincidunt nisl lectus",
+   "condimentum lectus vel euismod neque mauris eget neque Maecenas eu ullamcorper eros ut viverra ante Integer et",
+   "nunc porttitor sollicitudin Etiam sit amet cursus metus Curabitur at tincidunt massa Aenean non hendrerit enim et congue turpis Nulla aliquet",
+   "massa ac fringilla eleifend mauris ex facilisis massa sit amet mollis risus enim et turpis Sed nec urna commodo",
+   "molestie mauris maximus ornare sem Etiam vitae dui in nibh porta gravida egestas vel nun Aenean pellentesque quam vel enim ",
+   "Duis eu massa sit amet mauris malesuada consequat Ut aliquet ipsum eget est ornare nec mollis lorem fringilla Sed posuer",
+   "primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla sed lacus enim Suspendisse potenti Donec dictum",
+   "bibendum arcu et laoreet augue efficitur vitae Donec nec nisi est Mauris consequat velit et posuere tincidunt nisl lectus",
+   "cursus ex Cras mattis eget dolor sit amet tempor Ut id arcu vel tellus sollicitudin aliquam quis a libero"
   ],
   "hard": [
-    "Duis eu massa sit amet mauris malesuada consequat. Ut aliquet ipsum eget est ornare, nec mollis lorem fringilla. Sed posuer",
-    "Aliquam porttitor, ligula non placerat aliquet, ligula dui feugiat quam, imperdiet mattis libero neque vitae sem. Nullavul",
+    "Duis eu massa sit amet mauris malesuada consequat Ut aliquet ipsum eget est ornare nec mollis lorem fringilla Sed posuer",
+    "Aliquam porttitor ligula non placerat aliquet ligula dui feugiat quam imperdiet mattis libero neque vitae sem. Nullavul",
     "Nulla sed arcu vitae nisl commodo volutpat. Aliquam eu velit nec ex tincidunt feugiat sed et erat. Lorem ipsum dolor sitam",
-    "Quisque diam nisl, gravida id pulvinar vel, semper vitae libero. Nullam auctor est lacus, eu accumsan dolor pretium sitame",
-    "Aenean pellentesque quam vel enim tincidunt, eu tincidunt est molestie. Mauris sagittis scelerisque eros, vel semper diamv"
+    "Quisque diam nisl gravida id pulvinar vel semper vitae libero. Nullam auctor est lacus eu accumsan dolor pretium sitame",
+    "Aenean pellentesque quam vel enim tincidunt eu tincidunt est molestie. Mauris sagittis scelerisque eros, vel semper diamv"
   ]
 }
