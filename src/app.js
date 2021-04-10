@@ -9,6 +9,7 @@ let wordCount = 0;
 let time = 63;
 let score = 0;
 let difficulty = 'medium';
+let gameActive = false;
 
 /**
  * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
@@ -71,12 +72,14 @@ async function renderPrompt() {
 /**
  * timer function
  **/
-function timer() {
+function updateTimer() {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  if (time < 0) {   // move to clear game function? game over function?
+  if (time < 0) {
+    // move to gameOver function?
     console.log('game over');
+    gameActive = false;
     // TODO: clearInterval?
     return;
   }
@@ -91,33 +94,11 @@ function timer() {
 }
 
 /**
- * starts timer and renders prompt text when text input is focused
- **/
-function handleFocus() {
-  if (!currentPrompt.length) renderPrompt();
-
-  setInterval(timer, 1000);
-}
-
-/**
- * TODO: clears text prompt and stops timer when text input loses focus
- **/
-function clearGame(e) {
-
-  clearInterval(timer);
-}
-
-/**
- * TODO: use for letter highlighting / consider renaming function
- **/
-function handleInput() {
-  // split words to characters array?
-}
-
-/**
  * changes the word count display
  **/
-function updateWordCountDisplay() {
+function updateWordCount() {
+  wordCount++;
+
   wordCount < 10
     ? (wordCountDisplay.innerText = `000${wordCount}`)
     : wordCount < 100
@@ -139,14 +120,6 @@ function updateScore(currentWord) {
     }
   });
 
-  updateScoreDisplay();
-}
-
-/**
- * changes score count display
- * TODO: combine with updateScore?
- **/
-function updateScoreDisplay() {
   score < 10
     ? (scoreDisplay.innerText = `000${score}`)
     : score < 100
@@ -157,20 +130,31 @@ function updateScoreDisplay() {
 }
 
 /**
+ * if gameActive is false and currentPrompt is empty
+ * starts timer and renders prompt on text input focus / sets gameActive to true
+ **/
+function handleInputFocus() {
+  if (!gameActive && !currentPrompt.length) {
+    gameActive = true;
+    renderPrompt();
+    setInterval(updateTimer, 1000);
+  }
+}
+
+/**
  * checks for matching word / removes prompTile if word matches
  * invokes updateScore, updateWordCountDisplay, increment wordCount
  **/
 function handleEnter(e) {
-  if (e.key === 'Enter' || e.key === ' ') {
+  if (e.key === 'Enter' || (e.key === ' ' && gameActive)) {
     const currentWord = userInput.value.trim();
 
     currentPrompt.forEach(div => {
       if (div.innerText === currentWord) {
         updateScore(currentWord);
+        updateWordCount();
         div.remove();
         userInput.value = null;
-        wordCount++;
-        updateWordCountDisplay();
       }
     });
     // if prompt is empty, render new prompt
@@ -179,12 +163,34 @@ function handleEnter(e) {
 }
 
 /**
+ * TODO: use for letter highlighting / consider renaming function
+ **/
+function handleInput() {
+  // split words to characters array?
+}
+
+/**
+ * TODO: handleInputFocusOut
+ **/
+function handleInputFocusOut() {
+  // stops timer when input loses focus and gameActive to false
+}
+
+/**
+ * TODO: gameOver: stops timer, toggles results modal and ends game
+ **/
+function gameOver() {
+  gameActive = false;
+  // clearInterval(updateTimer);
+}
+
+/**
  * event listeners
  **/
+userInput.addEventListener('focus', handleInputFocus);
 userInput.addEventListener('keydown', handleEnter);
 userInput.addEventListener('input', handleInput);
-userInput.addEventListener('focus', handleFocus);
-userInput.addEventListener('focusout', clearGame);
+userInput.addEventListener('focusout', handleInputFocusOut);
 
 // const startStop = document.getElementById('start-stop');
 // startStop.addEventListener('click', changePrompt);
