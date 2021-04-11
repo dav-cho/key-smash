@@ -167,10 +167,10 @@ function handleInput(e) {
       currentWordArray.splice(0, currentWordArray.length);
     }
 
-    currentPrompt.forEach(wordSpan => {
+    currentPrompt.forEach(promptTile => {
       const currentWord = currentWordArray.join('').trim();
-      const letterSpans = wordSpan.childNodes;
-      const promptWordSlice = wordSpan.id.slice(0, currentWordArray.length);
+      const letterSpans = promptTile.childNodes;
+      const promptWordSlice = promptTile.id.slice(0, currentWordArray.length);
 
       if (promptWordSlice === currentWord) {
         for (let i = 0; i < currentWord.length; ++i) {
@@ -180,11 +180,9 @@ function handleInput(e) {
     });
   } else {
     const deletedLetter = currentWordArray.pop();
-    console.log('~ deletedLetter', deletedLetter);
-    console.log('~ currentWordArray', currentWordArray);
 
-    currentPrompt.forEach(wordSpan => {
-      const wordSpanArray = Array.from(wordSpan.childNodes);
+    currentPrompt.forEach(promptTile => {
+      const wordSpanArray = Array.from(promptTile.childNodes);
 
       for (let i = wordSpanArray.length - 1; i >= 0; --i) {
         if (wordSpanArray[i].innerText === deletedLetter) {
@@ -204,21 +202,22 @@ function handleInput(e) {
  **/
 function handleEnter(e) {
   if ((e.key === 'Enter' || e.key === ' ') && time >= 0) {
-    currentPrompt.forEach(wordSpan => {
-      if (wordSpan.id === currentWordArray.join('')) {
+    currentPrompt.forEach(promptTile => {
+      if (promptTile.id === currentWordArray.join('')) {
         updateScore();
         updateWordCount();
-        wordSpan.remove();
+        promptTile.remove();
         userInput.value = null;
         currentWordArray.splice(0, currentWordArray.length);
-        
-        // TODO: clear highlighted letter
-        // wordSpan.forEach(letterSpan => {
-        //   if (letterSpan.hasAttribute('class')) {
-        //     letterSpan.removeAttribute('class');
-        //   }
-        // })
       }
+    });
+    // clear highlighted letters
+    currentPrompt.forEach(promptTile => {
+      promptTile.childNodes.forEach(letterSpan => {
+        if (letterSpan.hasAttribute('class')) {
+          letterSpan.removeAttribute('class');
+        }
+      });
     });
     // if prompt is empty, render new prompt
     if (!currentPrompt.length) renderPrompt();
