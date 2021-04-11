@@ -75,6 +75,19 @@ async function renderPrompt() {
 }
 
 /**
+ * clears prompt letter highlights
+ **/
+function clearPromptHighlights() {
+  currentPrompt.forEach(promptTile => {
+    promptTile.childNodes.forEach(letterSpan => {
+      if (letterSpan.hasAttribute('class')) {
+        letterSpan.removeAttribute('class');
+      }
+    });
+  });
+}
+
+/**
  * changes the word count display
  **/
 function updateWordCount() {
@@ -157,20 +170,17 @@ function handleInputFocusOut() {
 }
 
 /**
- * TODO: use for letter highlighting / consider renaming function
+ * highlights prompt letters matching user input
+ * TODO: fix random glitches (check handleEnter... make async?)
  **/
 function handleInput(e) {
   if (e.data) {
     currentWordArray.push(e.data);
-    // if word array has white space in the front, clear array
-    if (currentWordArray.join('') === ' ') {
-      currentWordArray.splice(0, currentWordArray.length);
-    }
-    // TODO: fix space key clears highlights (check handleEnter for space key)
+    // TODO: fix enter key clears highlights (check handleEnter)
     currentPrompt.forEach(promptTile => {
       const currentWord = currentWordArray.join('').trim();
+      const promptWordSlice = promptTile.id.slice(0, currentWord.length);
       const letterSpans = promptTile.childNodes;
-      const promptWordSlice = promptTile.id.slice(0, currentWordArray.length);
 
       if (promptWordSlice === currentWord) {
         for (let i = 0; i < currentWord.length; ++i) {
@@ -197,25 +207,20 @@ function handleInput(e) {
 }
 
 /**
- * checks for matching word / removes prompTile if word matches
- * invokes updateScore, updateWordCountDisplay, increment wordCount
+ * checks for matching word / removes prompTile if word matches,
+ * invokes updateScore, updateWordCountDisplay, increment wordCount, clearPromptHighlights
  **/
 function handleEnter(e) {
   if ((e.key === 'Enter' || e.key === ' ') && time >= 0) {
     currentPrompt.forEach(promptTile => {
-      if (promptTile.id === currentWordArray.join('')) {
+      if (promptTile.id === currentWordArray.join('').trim()) {
         updateScore();
         updateWordCount();
+        clearPromptHighlights();
         promptTile.remove();
         userInput.value = null;
         currentWordArray.splice(0, currentWordArray.length);
       }
-      // clear highlighted letters
-      promptTile.childNodes.forEach(letterSpan => {
-        if (letterSpan.hasAttribute('class')) {
-          letterSpan.removeAttribute('class');
-        }
-      });
     });
     // if prompt is empty, render new prompt
     if (!currentPrompt.length) renderPrompt();
