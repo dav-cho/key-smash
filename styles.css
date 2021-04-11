@@ -136,9 +136,16 @@ main {
   outline: none;
 } */
 
-.word-tile {
-  padding: 0.15rem 1rem;
-  border: 1px solid blue;
+.prompt-tile {
+  margin: 0.1rem;
+  padding: 0.2rem 1rem 0.4rem 1rem;
+  background-color: lightgray;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+}
+
+.letter-match {
+  color: red;
 }
 
 #user-input {
