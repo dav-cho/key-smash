@@ -187,10 +187,11 @@ function handleInput(e) {
       const wordSpanArray = Array.from(wordSpan.childNodes);
 
       for (let i = wordSpanArray.length - 1; i >= 0; --i) {
-        // console.log('~ letter span', wordSpanArray[i]);
         if (wordSpanArray[i].innerText === deletedLetter) {
-          wordSpanArray[i].removeAttribute('class');
-          break;
+          if (wordSpanArray[i].hasAttribute('class')) {
+            wordSpanArray[i].removeAttribute('class');
+            break;
+          }
         }
       }
     });
@@ -203,13 +204,20 @@ function handleInput(e) {
  **/
 function handleEnter(e) {
   if ((e.key === 'Enter' || e.key === ' ') && time >= 0) {
-    currentPrompt.forEach(div => {
-      if (div.id === currentWordArray.join('')) {
+    currentPrompt.forEach(wordSpan => {
+      if (wordSpan.id === currentWordArray.join('')) {
         updateScore();
         updateWordCount();
-        div.remove();
+        wordSpan.remove();
         userInput.value = null;
         currentWordArray.splice(0, currentWordArray.length);
+        
+        // TODO: clear highlighted letter
+        // wordSpan.forEach(letterSpan => {
+        //   if (letterSpan.hasAttribute('class')) {
+        //     letterSpan.removeAttribute('class');
+        //   }
+        // })
       }
     });
     // if prompt is empty, render new prompt
