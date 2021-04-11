@@ -166,7 +166,7 @@ function handleInput(e) {
     if (currentWordArray.join('') === ' ') {
       currentWordArray.splice(0, currentWordArray.length);
     }
-    // TODO: fix space key clears highlights
+    // TODO: fix space key clears highlights (check handleEnter for space key)
     currentPrompt.forEach(promptTile => {
       const currentWord = currentWordArray.join('').trim();
       const letterSpans = promptTile.childNodes;
@@ -210,9 +210,7 @@ function handleEnter(e) {
         userInput.value = null;
         currentWordArray.splice(0, currentWordArray.length);
       }
-    });
-    // clear highlighted letters
-    currentPrompt.forEach(promptTile => {
+      // clear highlighted letters
       promptTile.childNodes.forEach(letterSpan => {
         if (letterSpan.hasAttribute('class')) {
           letterSpan.removeAttribute('class');
