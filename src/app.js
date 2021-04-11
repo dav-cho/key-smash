@@ -166,7 +166,7 @@ function handleInput(e) {
     if (currentWordArray.join('') === ' ') {
       currentWordArray.splice(0, currentWordArray.length);
     }
-
+    // TODO: fix space key clears highlights
     currentPrompt.forEach(promptTile => {
       const currentWord = currentWordArray.join('').trim();
       const letterSpans = promptTile.childNodes;
