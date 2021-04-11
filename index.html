@@ -21,7 +21,9 @@
     </div>
 
     <div id="nav-main">
-      <img src="./img/nav-logo.png" id="nav-logo" alt="">
+      <div id="nav-logo">
+        <img src="./img/nav-logo.png" alt="">
+      </div>
       <div id="nav-links">
         <a href="" class="nav-link">Game Mode</a>
         <a href="" class="nav-link">Stats</a>
@@ -38,26 +40,25 @@
     </div>
 
     <section id="stats">
-      <div>
-        <div>Word Count</div>
+      <div class="stats-container">
+        <div class="stats-heading">Word Count</div>
         <div id="word-count">0000</div>
       </div>
-      <div>
-        <div>Timer</div>
+      <div class="stats-container">
+        <div class="stats-heading">Timer</div>
         <div id="timer">00:00</div>
       </div>
-      <div>
-        <div>Score</div>
-        <di id="score">0000</div>
+      <div class="stats-container">
+        <div class="stats-heading">Score</div>
+        <div id="score">0000</div>
       </div>
     </section>
 
     <section id="game-play">
-      <div id="prompt"></div>
+      <div id="prompt-wrapper">
+        <div id="prompt"></div>
+      </div>
       <input id="user-input" placeholder="type here" type="text">
-      <!-- <div> -->
-        <!-- <button id="start-stop">Start/Stop</button> -->
-      <!-- </div> -->
     </section>
   </main>
 

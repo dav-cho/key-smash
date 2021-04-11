@@ -68,6 +68,7 @@ async function renderPrompt() {
 
     word.split('').forEach(letter => {
       const letterSpan = document.createElement('span');
+      // letterSpan.classList.add(word);
       letterSpan.innerText = letter;
       promptTile.append(letterSpan);
     });
@@ -203,6 +204,35 @@ function handleInput(e) {
         }
       }
     });
+
+    // currentPrompt.forEach(promptTile => {
+    //   const wordSpanArray = Array.from(promptTile.childNodes);
+
+    //   for (let i = wordSpanArray.length - 1; i >= 0; --i) {
+    //     if (
+    //       wordSpanArray[i].innerText === deletedLetter &&
+    //       wordSpanArray[i].hasAttribute('class')
+    //     ) {
+    //       wordSpanArray[i].removeAttribute('class');
+    //       break;
+    //     }
+    //   }
+    // });
+
+    // currentPrompt.forEach(wordSpan => {
+    //   const wordSpanArray = Array.from(wordSpan.childNodes);
+
+    //   for (let i = wordSpanArray.length - 1; i >= 0; --i) {
+    //     if (
+    //       wordSpanArray[i].innerText === deletedLetter &&
+    //       wordSpanArray[i].hasAttribute('class') &&
+    //       i === currentWordArray.length
+    //     ) {
+    //       wordSpanArray[i].removeAttribute('class');
+    //       break;
+    //     }
+    //   }
+    // });
   }
 }
 

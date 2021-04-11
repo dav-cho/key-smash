@@ -5,13 +5,14 @@ html {
   margin: 0;
   padding: 0;
   padding-bottom: 4rem;
+  min-width: 950px;
 }
 
 body {
   text-align: center;
   width: 100%;
   margin: 0;
-  /* background-color: black; */
+  background-color: black;
 }
 
 header {
@@ -42,7 +43,7 @@ header {
 #nav-main {
   font-family: 'Fugaz One';
   width: 100%;
-  background-color: #ECD400;
+  background-color: #ecd400;
   padding: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -50,35 +51,37 @@ header {
 }
 
 #nav-logo {
-  margin-bottom: 0.2rem;
+  display: flex;
   width: 30%;
   object-fit: contain;
 }
 
 #nav-links {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
+  display: block;
   font-size: 1.15rem;
   padding: 0 0.75rem;
   text-decoration: none;
   color: black;
-  background-image: linear-gradient(0deg, #D70000 0%, #FF7A00 85%);
+  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-stroke: 0.2rem transparent;
   -moz-text-stroke: 0.2rem transparent;
-  /* -webkit-text-fill-color: transparent; */
-  /* -moz-text-fill-color: transparent; */
-  /* background-clip: text; */
-  /* transition: transform 0.2s ease-in-out; */
+  transition: transform 100ms;
 }
 
 .nav-link:hover {
-  /* transform: scale(1.5); */
-  /* text-decoration: underline; */
-  border-bottom: 0.2rem solid black;
-  /* color: #D70000; */
+  transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  /* transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -webkit-transform: scale(1.15); */
 }
 
 #nav-button {
@@ -90,7 +93,7 @@ header {
   margin-left: 0.5rem;
   border: none;
   border-radius: 0.5rem;
-  color: white;
+  color: #ebebeb;
 }
 
 main {
@@ -100,41 +103,78 @@ main {
 #game-mode h2 {
   font-size: 3rem;
   margin: 1.5rem;
-  background-image: linear-gradient(0deg, #D70000 0%, #FF7A00 85%);
+  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-stroke: 0.2rem transparent;
   -moz-text-stroke: 0.2rem transparent;
-  -webkit-text-stroke-width: 0.50rem;
+  -webkit-text-stroke-width: 0.5rem;
   -moz-text-stroke-width: 0.5rem;
 }
 
 #stats {
   font-size: 1.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 60%;
-  margin: 0 auto;
+  margin: 3rem auto 0.5rem auto;
 }
 
-#prompt {
-  font-family: sans-serif;
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 25%;
+  height: 6rem;
+  background-color: #ebebeb;
+  border-radius: 0.5rem;
+  /* padding: 0 0.5rem; */
+}
+
+.stats-heading {
+  background-color: #ECD400;
+  padding: 0.2rem 0 0.1rem 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#word-count,
+#timer,
+#score {
   font-size: 2rem;
-  text-align: center;
+  padding-top: 0.35rem;
+}
+
+#game-play {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#prompt-wrapper {
   width: 70%;
   height: 8rem;
   margin: 1.5rem auto;
-  border: 0.5rem solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 1.5rem;
+  background: linear-gradient(#ff7a00, #d70000);
+}
+
+#prompt {
+  height: 86%;
+  width: 98%;
+  margin: 0 0.6rem;
+  background-color: #ebebeb;
+  font-family: sans-serif;
+  font-size: 2rem;
+  text-align: center;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  border-radius: 1rem;
 }
-
-/* #prompt:focus {
-  outline: none;
-} */
 
 .prompt-tile {
   margin: 0.1rem;
@@ -145,15 +185,17 @@ main {
 }
 
 .letter-match {
-  color: red;
+  color: #d70000;
 }
 
 #user-input {
+  background-color: #ebebeb;
+  /* background-color: #F4F4F4; */
   font-size: 2rem;
   text-align: center;
   width: 50%;
   height: 4rem;
-  border: 0.4rem solid black;
+  border: 0.4rem solid #d70000;
   border-radius: 1rem;
 }
 
