@@ -55,9 +55,9 @@ const letterScores = {
 async function getPrompt() {
   try {
     const res = await fetch('https://type.fit/api/quotes');
-    const quotes = await res.json();
+    const json = await res.json();
 
-    const fetchedPrompt = quotes[Math.floor(Math.random() * 1643)].text.split(' ');
+    const fetchedPrompt = json[Math.floor(Math.random() * json.length)].text.split(' ');
     return fetchedPrompt.slice(0, 30);
   } catch (err) {
     console.log('ERROR', err);
