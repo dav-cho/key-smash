@@ -36,7 +36,7 @@ class Game {
     this.timerDisplay = null;
     this.scoreDisplay = null;
 
-    // game stat variables
+    // game stat properties
     this.wordCount = 0;
     this.time = null;
     this.score = 0;
@@ -150,7 +150,7 @@ class Game {
 
       this.time--;
     } else {
-      this.initGameStartEnd;
+      this.initGameStartEnd();
     }
   }
 
@@ -192,31 +192,6 @@ class Game {
       : this.score < 1000
       ? (this.scoreDisplay.innerText = `0${this.score}`)
       : (this.scoreDisplay.innerText = `${this.score}`);
-  }
-
-  /**
-   * start/clear timer interval
-   **/
-  initGameStartEnd() {
-    const timerActive = setInterval(() => {
-      if (this.time < 0) {
-        clearInterval(timerActive);
-        gameOver();
-        this.gameActive = false;
-      } else this.updateTimer();
-    }, 1000);
-  }
-
-  /**
-   * if game is not active, initiate game start and render prompt
-   **/
-  handleInputFocus() {
-    if (!this.gameActive) {
-      this.gameActive = true;
-      this.time = 65;
-      this.initGameStartEnd();
-      this.renderPrompt();
-    }
   }
 
   /**
@@ -276,10 +251,59 @@ class Game {
       if (!this.currentPrompt.length) this.renderPrompt();
     }
   }
+
+  /**
+   * if game is not active, initiate game start and render prompt
+   **/
+  handleInputFocus() {
+    if (!this.gameActive) {
+      this.gameActive = true;
+      this.time = 2;
+      this.initGameStartEnd();
+      this.renderPrompt();
+    }
+  }
+
+  /**
+   * start/clear timer interval
+   **/
+  initGameStartEnd() {
+    const timerActive = setInterval(() => {
+      if (this.time < 0) {
+        clearInterval(timerActive);
+        gameOver();
+        this.gameActive = false;
+      } else this.updateTimer();
+    }, 1000);
+  }
 }
 
 const game = new Game();
 game.initialize();
+
+/**
+ *********************************************************************************************
+ **/
+
+class Results {
+  constructor(game) {
+    // dom selectors
+    this.wordCountResults = null;
+    this.scoreResults = null;
+    this.highScore = null;
+
+    // 
+    this.wordCount = game.wordCount;
+    this.score = game.score;
+  }
+
+  initialize() {
+    // initialize dom selectors
+    this.wordCountResults = document.getElementById('word-count-results');
+    this.scoreResults = document.getElementById('score-results');
+    this.highScore = document.getElementById('high-score');
+  }
+}
 
 /**
  *********************************************************************************************

@@ -268,3 +268,7 @@ footer a {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.modal-content h1 {
+  font-size: 5rem;
+}
