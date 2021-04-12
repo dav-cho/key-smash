@@ -6,18 +6,19 @@ const timerDisplay = document.getElementById('timer');
 const scoreDisplay = document.getElementById('score');
 
 let wordCount = 0;
-let time = 65;
+let time = 2;
 let score = 0;
 let difficulty = 'easy';
+let gameActive = false;
 const currentWordArray = [];
 
 /**
  * toggle nav logo on scroll
  **/
-const navLogoImg = document.getElementById('nav-logo-img');
-const navLogoText = document.getElementById('nav-logo-text');
-
 function toggleHiddenNavLogo() {
+  const navLogoImg = document.getElementById('nav-logo-img');
+  const navLogoText = document.getElementById('nav-logo-text');
+
   if (window.scrollY > 115) {
     navLogoImg.style.display = 'block';
     navLogoText.style.display = 'none';
@@ -50,25 +51,14 @@ const letterScores = {
 };
 
 /**
- * fetches lorem ipsum text from json
+ * dummy lorem ipsum json prompts
  **/
-async function getPrompt() {
-  try {
-    const res = await fetch('https://type.fit/api/quotes');
-    const json = await res.json();
-
-    const fetchedPrompt = json[Math.floor(Math.random() * json.length)].text.split(' ');
-    return fetchedPrompt.slice(0, 30);
-  } catch (err) {
-    console.log('ERROR', err);
-  }
-}
 // async function getPrompt() {
 //   try {
 //     const res = await fetch('src/lorem-ipsum.json');
 //     const json = await res.json();
 //     console.log('SUCCESS', res);
-    
+
 //     const fetchedPrompt = json[difficulty][Math.floor(Math.random() * json[difficulty].length)].split(' ');
 //     const randomSliceStart = Math.floor(Math.random() * (fetchedPrompt.length - 5));
 //     return fetchedPrompt.slice(randomSliceStart, randomSliceStart + 5); // slice to 5 for testing. actual length tbd
@@ -78,10 +68,33 @@ async function getPrompt() {
 // }
 
 /**
+ * fetches quote from inspirational quotes API
+ **/
+async function getPrompt() {
+  try {
+    const res = await fetch('https://type.fit/api/quotes');
+    const json = await res.json();
+    console.log('SUCESS', res);
+
+    const fetchedPrompt = json[
+      Math.floor(Math.random() * json.length)
+    ].text.split(' ');
+    return fetchedPrompt.slice(0, 30);
+  } catch (err) {
+    console.log('ERROR', err);
+  }
+}
+
+/**
  * renders prompt
  **/
 async function renderPrompt() {
   const words = await getPrompt();
+
+  // TODO: clear promptTiles if there are any there
+  // if (currentPrompt) {
+    // while (prompt.firstChild) prompt.remove(prompt.firstChild);
+  // }
 
   words.forEach(word => {
     const promptTile = document.createElement('div');
@@ -147,10 +160,10 @@ function updateScore() {
 /**
  * timer function
  **/
-
 function updateTimer() {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
+  console.log('~ time', time);
 
   if (time >= 0) {
     minutes < 10 && seconds < 10
@@ -160,24 +173,36 @@ function updateTimer() {
       : (timerDisplay.innerText = `${minutes}:${seconds}`);
 
     time--;
+  } else {
+    console.log('~ time out');
+    initGame();
   }
 }
 
 /**
- * gameStatus
+ * starts timer and sets gameStatus to true;
  **/
-function gameStatus() {
-  if (time >= 0) setInterval(updateTimer, 1000);
+function initGame() {
+  gameActive = true;
+  const timerActive = setInterval(() => {
+    if (time < 0) {
+      console.log('~ initGame time', time)
+      clearInterval(timerActive);
+      gameOver();
+    } else updateTimer();
+  }, 1000);
 }
 
 /**
  * if currentPrompt is empty and time > 0
- * starts timer and renders prompt on text input focus
+ * initiates game start and renders prompt on text input focus
  **/
 function handleInputFocus() {
-  if (!currentPrompt.length && time >= 0) {
+  if (gameActive === false) {
+  // if (!currentPrompt.length && gameActive === false) {
+  // if (!currentPrompt.length && time >= 0) {
     renderPrompt();
-    gameStatus();
+    initGame();
   }
 }
 
@@ -195,6 +220,7 @@ function handleInputFocusOut() {
 function handleInput(e) {
   if (e.data) {
     currentWordArray.push(e.data);
+
     currentPrompt.forEach(promptTile => {
       const currentWord = currentWordArray.join('').trim();
       const promptWordSlice = promptTile.id.slice(0, currentWord.length);
@@ -246,12 +272,29 @@ function handleEnter(e) {
 }
 
 /**
- * TODO: gameOver: stops timer, toggles results modal and ends game
+ * TODO: gameOver: stops timer, toggles results modal and gameActive to false
  **/
-function gameOver() {
+function gameOver(e) {
+  const modalGameOver = document.getElementById('game-over');
+
+  modalGameOver.style.display = 'block';
+  gameActive = false;
   console.log('~ game over');
 }
 
+/**
+ * modal toggle
+ **/
+
+function toggleModal(e) {
+  const modals = document.querySelectorAll('.modal');
+
+  modals.forEach(modal => {
+    if (e.target === modal) modal.style.display = 'none';
+  })
+}
+
+window.addEventListener('click', toggleModal);
 userInput.addEventListener('focus', handleInputFocus);
 userInput.addEventListener('focusout', handleInputFocusOut);
 userInput.addEventListener('input', handleInput);
