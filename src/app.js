@@ -66,10 +66,10 @@ async function getPrompt() {
 // async function getPrompt() {
 //   try {
 //     const res = await fetch('src/lorem-ipsum.json');
-//     const loremIpsum = await res.json();
+//     const json = await res.json();
 //     console.log('SUCCESS', res);
-
-//     const fetchedPrompt = loremIpsum[difficulty][Math.floor(Math.random() * 5)].split(' ');
+    
+//     const fetchedPrompt = json[difficulty][Math.floor(Math.random() * json[difficulty].length)].split(' ');
 //     const randomSliceStart = Math.floor(Math.random() * (fetchedPrompt.length - 5));
 //     return fetchedPrompt.slice(randomSliceStart, randomSliceStart + 5); // slice to 5 for testing. actual length tbd
 //   } catch (err) {
