@@ -51,24 +51,31 @@ const letterScores = {
 
 /**
  * fetches lorem ipsum text from json
- * TODO: fetch text from API
  **/
 async function getPrompt() {
   try {
-    const res = await fetch('src/lorem-ipsum.json');
-    const dummy = await res.json();
-    console.log('SUCCESS', res);
+    const res = await fetch('https://type.fit/api/quotes');
+    const quotes = await res.json();
 
-    const fetchedPrompt = dummy[difficulty][Math.floor(Math.random() * 5)].split(' ');
-    const randomSliceStart = Math.floor(Math.random() * (fetchedPrompt.length - 5));
-    console.log('~ fetchedPrompt', fetchedPrompt);
-    console.log('~ randomSliceStart', randomSliceStart)
-
-    return fetchedPrompt.slice(randomSliceStart, randomSliceStart + 5); // slice to 5 for testing. actual length tbd
+    const fetchedPrompt = quotes[Math.floor(Math.random() * 1643)].text.split(' ');
+    return fetchedPrompt.slice(0, 30);
   } catch (err) {
     console.log('ERROR', err);
   }
 }
+// async function getPrompt() {
+//   try {
+//     const res = await fetch('src/lorem-ipsum.json');
+//     const loremIpsum = await res.json();
+//     console.log('SUCCESS', res);
+
+//     const fetchedPrompt = loremIpsum[difficulty][Math.floor(Math.random() * 5)].split(' ');
+//     const randomSliceStart = Math.floor(Math.random() * (fetchedPrompt.length - 5));
+//     return fetchedPrompt.slice(randomSliceStart, randomSliceStart + 5); // slice to 5 for testing. actual length tbd
+//   } catch (err) {
+//     console.log('ERROR', err);
+//   }
+// }
 
 /**
  * renders prompt
