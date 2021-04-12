@@ -173,7 +173,7 @@ main {
 
 #prompt-wrapper {
   width: 70%;
-  height: 8rem;
+  height: 16rem;
   margin: 1.5rem auto 3rem auto;
   display: flex;
   justify-content: center;
@@ -183,7 +183,7 @@ main {
 }
 
 #prompt {
-  height: 86%;
+  height: 90%;
   width: 98%;
   margin: 0 0.6rem;
   background-color: #ebebeb;
@@ -192,12 +192,14 @@ main {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  /* align-items: flex-start; */
   border-radius: 1rem;
 }
 
 .prompt-tile {
+  /* margin: 0.3rem 0.1rem; */
   margin: 0.1rem;
   padding: 0.2rem 1rem 0.4rem 1rem;
   background-color: lightgray;
