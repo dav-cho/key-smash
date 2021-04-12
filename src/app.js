@@ -19,12 +19,10 @@ document.addEventListener('scroll', toggleNavLogo);
 /**
  * game options nav link
  **/
-function toggleOptionsModal() {
-  
-}
+function toggleOptionsModal() {}
 
 /**
- *********************************************************************************
+ *********************************************************************************************
  **/
 class Game {
   constructor() {
@@ -40,6 +38,7 @@ class Game {
     this.wordCount = 0;
     this.time = null;
     this.score = 0;
+    this.highScore = null;
     this.difficulty = 'easy';
     this.gameActive = false;
     this.currentWordArray = [];
@@ -162,7 +161,7 @@ class Game {
      * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
      **/
     const letterScores = {
-      11: "aeilnorstu'.,;",
+      11: "aeilnorstu'.,-;",
       17: 'AEILNORSTU?":',
       22: 'dg',
       33: 'DG',
@@ -192,6 +191,13 @@ class Game {
       : this.score < 1000
       ? (this.scoreDisplay.innerText = `0${this.score}`)
       : (this.scoreDisplay.innerText = `${this.score}`);
+  }
+
+  /**
+   * check current score after word match
+   **/
+  updateHighScore() {
+    if (this.score > this.highScore) this.highScore = this.score;
   }
 
   /**
@@ -240,6 +246,7 @@ class Game {
       this.currentPrompt.forEach(promptTile => {
         if (promptTile.id === this.currentWordArray.join('').trim()) {
           this.updateScore();
+          this.updateHighScore();
           this.updateWordCount();
           this.clearPromptHighlights();
           promptTile.remove();
@@ -258,7 +265,7 @@ class Game {
   handleInputFocus() {
     if (!this.gameActive) {
       this.gameActive = true;
-      this.time = 2;
+      this.time = 5;
       this.initGameStartEnd();
       this.renderPrompt();
     }
@@ -278,36 +285,41 @@ class Game {
   }
 }
 
-const game = new Game();
-game.initialize();
-
 /**
  *********************************************************************************************
  **/
-
 class Results {
-  constructor(game) {
+  constructor(currentGame) {
     // dom selectors
     this.wordCountResults = null;
     this.scoreResults = null;
-    this.highScore = null;
+    this.highScoreResults = null;
 
-    // 
-    this.wordCount = game.wordCount;
-    this.score = game.score;
+    // result stats properties
+    this.wordCount = currentGame.wordCount;
+    this.score = currentGame.score;
+    this.highScore = currentGame.highScore;
   }
 
   initialize() {
     // initialize dom selectors
     this.wordCountResults = document.getElementById('word-count-results');
     this.scoreResults = document.getElementById('score-results');
-    this.highScore = document.getElementById('high-score');
+    this.highScoreResults = document.getElementById('high-score');
+  }
+
+  displayResults() {
+    this.wordCountResults.innerText = this.wordCount;
+    this.scoreResults.innerText = this.score;
+    this.highScoreResults.innerText = this.highScore;
   }
 }
-
 /**
  *********************************************************************************************
  **/
+
+const game = new Game();
+game.initialize();
 
 /**
  * TODO: handleInputFocusOut
@@ -319,17 +331,19 @@ function handleInputFocusOut() {
 /**
  * gameOver: stops timer, toggles results modal and gameActive to false
  **/
-function gameOver(e) {
+function gameOver() {
   const modalGameOver = document.getElementById('game-over');
-
   modalGameOver.style.display = 'block';
   gameActive = false;
+
+  const result = new Results(game);
+  result.initialize();
+  result.displayResults();
 }
 
 /**
  * modal toggle
  **/
-
 function toggleModal(e) {
   const modals = document.querySelectorAll('.modal');
 
