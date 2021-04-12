@@ -1,59 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Fugaz+One&display=swap');
-
 html {
   width: 100%;
   margin: 0;
   padding: 0;
   padding-bottom: 4rem;
-  min-width: 950px;
+  min-width: 925px;
+  /* height: 2000px; */
+  height: 900px;
+  /* height: 100%; */
 }
 
 body {
+  height: 100%;
   text-align: center;
-  width: 100%;
   margin: 0;
-  background-color: black;
+  /* background-color: black; */
+  background-image: url('./img/retro-grid-1.jpeg');
+  /* background-size: 47% auto; */
+  /* background-position: bottom; */
+  background-size: 100% auto;
+  background-size: cover;
+  /* background-position: bottom; */
+  background-position-y: 4rem;
 }
 
 header {
   background-color: black;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
+  /* background-image: url('./img/header-flame-background.jpeg');
+  background-size: contain; */
 }
 
-#banner {
-  width: 100%;
-  padding: 3rem;
+header img {
+  padding: 3rem 0;
 }
 
-/* #banner h1 {
-  font-family: 'Faster One';
-  font-size: 5rem;
-  background-image: linear-gradient(0deg, #D70000 0%, #FF7A00 85%);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-stroke: 0.2rem transparent;
-  -moz-text-stroke: 0.2rem transparent;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  background-clip: text;
-} */
+main {
+  height: 87%;
+}
 
 #nav-main {
   font-family: 'Fugaz One';
-  width: 100%;
   background-color: #ecd400;
-  padding: 0.5rem;
+  margin 0 auto;
+  padding: 0.4rem;
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 }
+
 
 #nav-logo {
   display: flex;
-  width: 30%;
-  object-fit: contain;
+  width: 50%;
+  margin-left: 0.5rem;
+  /* object-fit: contain; */
+}
+
+#nav-logo-img {
+  display: none;
+}
+
+#nav-logo-text {
+  font-size: 2rem;
+  padding: 0.2rem 0.5rem 0 0.5rem;
+  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-stroke: 0.3rem transparent;
+  -moz-text-stroke: 0.3rem transparent;
+  display: block;
 }
 
 #nav-links {
@@ -67,7 +84,7 @@ header {
   padding: 0 0.75rem;
   text-decoration: none;
   color: black;
-  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
+  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 60%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-stroke: 0.2rem transparent;
@@ -76,24 +93,30 @@ header {
 }
 
 .nav-link:hover {
-  transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  /* transform: scale(1.15);
+  color: 
+  transform: scale(1.15);
   -ms-transform: scale(1.15);
-  -webkit-transform: scale(1.15); */
+  -webkit-transform: scale(1.15);
 }
 
 #nav-button {
   font-family: 'Fugaz One';
   font-size: 1.25rem;
-  background-image: url('./img/button-flame-register.png');
+  background-image: url('./img/button-flame.png');
   background-size: contain;
   padding: 0.65rem 1.5rem 0.5rem 1.5rem;
-  margin-left: 0.5rem;
+  margin: 0 0.25rem 0 0.5rem;
   border: none;
   border-radius: 0.5rem;
   color: #ebebeb;
+  transition: transform 100ms;
+}
+
+#nav-button:hover {
+  color: #ff7a00;
+  transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
 }
 
 main {
@@ -102,8 +125,11 @@ main {
 
 #game-mode h2 {
   font-size: 3rem;
-  margin: 1.5rem;
-  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
+  /* margin: 1.5rem; */
+  /* padding-top: 4rem; */
+  margin-top: 1rem;
+  padding-top: 1rem;
+  background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 60%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-stroke: 0.2rem transparent;
@@ -117,22 +143,21 @@ main {
   display: flex;
   justify-content: space-between;
   width: 60%;
-  margin: 3rem auto 0.5rem auto;
+  margin: 4rem auto 0.5rem auto;
 }
 
 .stats-container {
   display: flex;
   flex-direction: column;
-  align-content: center;
   width: 25%;
   height: 6rem;
   background-color: #ebebeb;
   border-radius: 0.5rem;
-  /* padding: 0 0.5rem; */
 }
 
 .stats-heading {
-  background-color: #ECD400;
+  /* background-color: #ECD400; */
+  background: linear-gradient(#ECD400 5%, #ff7a00 120%);
   padding: 0.2rem 0 0.1rem 0;
   border-radius: 0.5rem 0.5rem 0 0;
 }
@@ -153,7 +178,7 @@ main {
 #prompt-wrapper {
   width: 70%;
   height: 8rem;
-  margin: 1.5rem auto;
+  margin: 1.5rem auto 3rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -190,15 +215,36 @@ main {
 
 #user-input {
   background-color: #ebebeb;
-  /* background-color: #F4F4F4; */
   font-size: 2rem;
   text-align: center;
   width: 50%;
   height: 4rem;
-  border: 0.4rem solid #d70000;
+  border: 0.45rem solid #d70000;
   border-radius: 1rem;
 }
 
 #user-input:focus {
   outline: none;
+}
+
+footer a {
+  font-family: 'Fugaz One';
+  font-size: 1.2rem;
+  color: black;
+  text-decoration: none;
+}
+
+#nav-footer {
+  background-color: #d70000;
+  height: 2.75rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.footer-link {
+  margin: 0 1rem;
 }

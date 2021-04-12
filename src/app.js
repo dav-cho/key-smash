@@ -12,6 +12,26 @@ let difficulty = 'medium';
 const currentWordArray = [];
 
 /**
+ * toggle nav logo on scroll
+ **/
+// const navMain = document.getElementById('nav-main');
+const navLogoImg  = document.getElementById('nav-logo-img');
+const navLogoText = document.getElementById('nav-logo-text');
+
+function toggleHiddenNavLogo() {
+  console.log(window.scrollY);
+  if (window.scrollY > 115) {
+    navLogoImg.style.display = 'block';
+    navLogoText.style.display = 'none';
+  } else {
+    navLogoImg.style.display = 'none';
+    navLogoText.style.display = 'block';
+  }
+}
+
+document.addEventListener('scroll', toggleHiddenNavLogo);
+
+/**
  * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
  **/
 const letterScores = {
@@ -68,7 +88,6 @@ async function renderPrompt() {
 
     word.split('').forEach(letter => {
       const letterSpan = document.createElement('span');
-      // letterSpan.classList.add(word);
       letterSpan.innerText = letter;
       promptTile.append(letterSpan);
     });
@@ -274,35 +293,3 @@ userInput.addEventListener('keydown', handleEnter);
 
 // const startStop = document.getElementById('start-stop');
 // startStop.addEventListener('click', changePrompt);
-
-/**
- * letter scores by frequency in english dictionary
- **/
-// const letterScore = {
-//   1: e,
-//   2: t,
-//   3: a,
-//   4: o,
-//   5: n,
-//   6: i,
-//   7: h,
-//   8: s,
-//   9: r,
-//   10: l,
-//   11: d,
-//   12: u,
-//   13: c,
-//   14: m,
-//   15: w,
-//   16: y,
-//   17: f,
-//   18: g,
-//   19: p,
-//   20: b,
-//   21: v,
-//   22: k,
-//   23: j,
-//   24: x,
-//   25: q,
-//   26: z,
-// };
