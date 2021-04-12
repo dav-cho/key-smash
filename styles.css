@@ -246,3 +246,25 @@ footer a {
 .footer-link {
   margin: 0 1rem;
 }
+
+.modal {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* z-index: 1; */
+  padding-top: 15%;
+}
+
+.modal-content {
+  background-color: #ebebeb;
+  width: 60%;
+  height: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
