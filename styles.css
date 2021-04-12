@@ -260,7 +260,8 @@ footer a {
 }
 
 .modal-content {
-  background-color: #ebebeb;
+  background-color: black;
+  color:#ebebeb;
   width: 60%;
   height: 50%;
   margin: 0 auto;
