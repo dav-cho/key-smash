@@ -4,7 +4,6 @@ html {
   padding: 0;
   padding-bottom: 4rem;
   min-width: 925px;
-  /* height: 2000px; */
   height: 900px;
   /* height: 100%; */
 }
@@ -13,14 +12,11 @@ body {
   height: 100%;
   text-align: center;
   margin: 0;
-  /* background-color: black; */
   background-image: url('./img/retro-grid-1.jpeg');
-  /* background-size: 47% auto; */
-  /* background-position: bottom; */
   background-size: 100% auto;
   background-size: cover;
-  /* background-position: bottom; */
   background-position-y: 4rem;
+  background-position-x: center;
 }
 
 header {

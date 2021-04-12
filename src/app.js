@@ -8,18 +8,16 @@ const scoreDisplay = document.getElementById('score');
 let wordCount = 0;
 let time = 65;
 let score = 0;
-let difficulty = 'medium';
+let difficulty = 'easy';
 const currentWordArray = [];
 
 /**
  * toggle nav logo on scroll
  **/
-// const navMain = document.getElementById('nav-main');
-const navLogoImg  = document.getElementById('nav-logo-img');
+const navLogoImg = document.getElementById('nav-logo-img');
 const navLogoText = document.getElementById('nav-logo-text');
 
 function toggleHiddenNavLogo() {
-  console.log(window.scrollY);
   if (window.scrollY > 115) {
     navLogoImg.style.display = 'block';
     navLogoText.style.display = 'none';
@@ -52,23 +50,21 @@ const letterScores = {
 };
 
 /**
- * fetches lorem ipsum text from dummy json
+ * fetches lorem ipsum text from json
  * TODO: fetch text from API
  **/
 async function getPrompt() {
   try {
-    const res = await fetch('src/dummy.json');
+    const res = await fetch('src/lorem-ipsum.json');
     const dummy = await res.json();
     console.log('SUCCESS', res);
 
-    // TODO: generate random number 0 - 14 for string slice length 5 (string length is 20);
-    // const sliceNum = Math.floor(Math.random() * 14);
+    const fetchedPrompt = dummy[difficulty][Math.floor(Math.random() * 5)].split(' ');
+    const randomSliceStart = Math.floor(Math.random() * (fetchedPrompt.length - 5));
+    console.log('~ fetchedPrompt', fetchedPrompt);
+    console.log('~ randomSliceStart', randomSliceStart)
 
-    const fetchedPrompt = dummy[difficulty][Math.floor(Math.random() * 20)]
-      .split(' ')
-      .slice(0, 5); // sliced length to 5 for testing. final - 5/10/15/20?
-
-    return fetchedPrompt;
+    return fetchedPrompt.slice(randomSliceStart, randomSliceStart + 5); // slice to 5 for testing. actual length tbd
   } catch (err) {
     console.log('ERROR', err);
   }
@@ -95,7 +91,7 @@ async function renderPrompt() {
 }
 
 /**
- * clears prompt letter highlights
+ * clears prompt letter highlights on word match
  **/
 function clearPromptHighlights() {
   currentPrompt.forEach(promptTile => {
@@ -164,11 +160,7 @@ function updateTimer() {
  * gameStatus
  **/
 function gameStatus() {
-  // const initTimer = setInterval(updateTimer, 1000);
-  // if (time >= 0) initTimer;
-
   if (time >= 0) setInterval(updateTimer, 1000);
-  // clearInterval(initTimer);
 }
 
 /**
@@ -191,12 +183,11 @@ function handleInputFocusOut() {
 
 /**
  * highlights prompt letters matching user input
- * TODO: fix random glitches (check handleEnter... make async?)
+ * TODO: fix delte glitches
  **/
 function handleInput(e) {
   if (e.data) {
     currentWordArray.push(e.data);
-    // TODO: fix enter key clears highlights (check handleEnter)
     currentPrompt.forEach(promptTile => {
       const currentWord = currentWordArray.join('').trim();
       const promptWordSlice = promptTile.id.slice(0, currentWord.length);
@@ -223,41 +214,12 @@ function handleInput(e) {
         }
       }
     });
-
-    // currentPrompt.forEach(promptTile => {
-    //   const wordSpanArray = Array.from(promptTile.childNodes);
-
-    //   for (let i = wordSpanArray.length - 1; i >= 0; --i) {
-    //     if (
-    //       wordSpanArray[i].innerText === deletedLetter &&
-    //       wordSpanArray[i].hasAttribute('class')
-    //     ) {
-    //       wordSpanArray[i].removeAttribute('class');
-    //       break;
-    //     }
-    //   }
-    // });
-
-    // currentPrompt.forEach(wordSpan => {
-    //   const wordSpanArray = Array.from(wordSpan.childNodes);
-
-    //   for (let i = wordSpanArray.length - 1; i >= 0; --i) {
-    //     if (
-    //       wordSpanArray[i].innerText === deletedLetter &&
-    //       wordSpanArray[i].hasAttribute('class') &&
-    //       i === currentWordArray.length
-    //     ) {
-    //       wordSpanArray[i].removeAttribute('class');
-    //       break;
-    //     }
-    //   }
-    // });
   }
 }
 
 /**
  * checks for matching word / removes prompTile if word matches,
- * invokes updateScore, updateWordCountDisplay, increment wordCount, clearPromptHighlights
+ * updates game stats and clears highlights
  **/
 function handleEnter(e) {
   if ((e.key === 'Enter' || e.key === ' ') && time >= 0) {
@@ -283,13 +245,7 @@ function gameOver() {
   console.log('~ game over');
 }
 
-/**
- * event listeners
- **/
 userInput.addEventListener('focus', handleInputFocus);
 userInput.addEventListener('focusout', handleInputFocusOut);
 userInput.addEventListener('input', handleInput);
 userInput.addEventListener('keydown', handleEnter);
-
-// const startStop = document.getElementById('start-stop');
-// startStop.addEventListener('click', changePrompt);
