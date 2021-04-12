@@ -17,7 +17,7 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
- ********************************************************************************* 
+ *********************************************************************************
  **/
 class Game {
   constructor() {
@@ -61,7 +61,6 @@ class Game {
    **/
   async getPrompt() {
     try {
-      console.log('~ this', this);
       const res = await fetch('https://type.fit/api/quotes');
       const json = await res.json();
       console.log('SUCESS', res);
@@ -144,7 +143,6 @@ class Game {
 
       this.time--;
     } else {
-      console.log('~ time out');
       this.initGameStartEnd;
     }
   }
@@ -208,7 +206,7 @@ class Game {
   handleInputFocus() {
     if (!this.gameActive) {
       this.gameActive = true;
-      this.time = 3;
+      this.time = 65;
       this.initGameStartEnd();
       this.renderPrompt();
     }
@@ -256,8 +254,7 @@ class Game {
    * updateWordCount, clearPromptHighlights, userInput to null, clear currentWordArray
    **/
   handleEnter(e) {
-    // if ((e.key === 'Enter' || e.key === ' ') && gameActive) {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if ((e.key === 'Enter' || e.key === ' ') && this.gameActive) {
       this.currentPrompt.forEach(promptTile => {
         if (promptTile.id === this.currentWordArray.join('').trim()) {
           this.updateScore();
@@ -276,6 +273,7 @@ class Game {
 
 const game = new Game();
 game.initialize();
+
 /**
  *********************************************************************************************
  **/
@@ -295,7 +293,6 @@ function gameOver(e) {
 
   modalGameOver.style.display = 'block';
   gameActive = false;
-  console.log('~ game over');
 }
 
 /**
