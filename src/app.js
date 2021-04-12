@@ -17,6 +17,13 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
+ * game options nav link
+ **/
+function toggleOptionsModal() {
+  
+}
+
+/**
  *********************************************************************************
  **/
 class Game {

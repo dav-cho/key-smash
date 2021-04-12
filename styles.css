@@ -21,8 +21,6 @@ body {
 
 header {
   background-color: black;
-  /* background-image: url('./img/header-flame-background.jpeg');
-  background-size: contain; */
 }
 
 header img {
@@ -36,7 +34,7 @@ main {
 #nav-main {
   font-family: 'Fugaz One';
   background-color: #ecd400;
-  margin 0 auto;
+  margin: 0 auto;
   padding: 0.4rem;
   display: flex;
   justify-content: space-between;
@@ -62,6 +60,7 @@ main {
   font-size: 2rem;
   padding: 0.2rem 0.5rem 0 0.5rem;
   background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
+  background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-stroke: 0.3rem transparent;
@@ -81,6 +80,7 @@ main {
   text-decoration: none;
   color: black;
   background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 60%);
+  background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-stroke: 0.2rem transparent;
@@ -89,7 +89,6 @@ main {
 }
 
 .nav-link:hover {
-  color: 
   transform: scale(1.15);
   -ms-transform: scale(1.15);
   -webkit-transform: scale(1.15);
