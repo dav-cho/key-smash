@@ -17,27 +17,7 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
- * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
- **/
-const letterScores = {
-  11: "aeilnorstu'.,;",
-  17: 'AEILNORSTU?":',
-  22: 'dg',
-  33: 'DG',
-  33: 'bcmp',
-  59: 'BCMP',
-  44: 'fhvwy',
-  66: 'FHVWY',
-  55: 'k',
-  82: 'K',
-  88: 'jx',
-  132: 'JX',
-  100: 'qz',
-  150: 'QZ',
-};
-
-/**
- * class for each round/game played
+ ********************************************************************************* 
  **/
 class Game {
   constructor() {
@@ -59,6 +39,7 @@ class Game {
   }
 
   initialize() {
+    // initialize dom selectors
     this.prompt = document.getElementById('prompt');
     this.currentPrompt = this.prompt.childNodes;
     this.userInput = document.getElementById('user-input');
@@ -67,28 +48,16 @@ class Game {
     this.scoreDisplay = document.getElementById('score');
 
     /**
-     * starts timer and sets gameStatus to true;
+     * event listeners
      **/
-    // function initGame() {
-    //   gameActive = true;
-    //   time = 3;
-
-    //   const timerActive = setInterval(() => {
-    //     if (time < 0) {
-    //       clearInterval(timerActive);
-    //       gameOver();
-    //     } else updateTimer();
-    //   }, 1000);
-    // }
-
+    this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
-    // userInput.addEventListener('focus', handleInputFocus);
     // userInput.addEventListener('focusout', handleInputFocusOut);
   }
 
   /**
-   * fetches quote from inspirational quotes API
+   * fetch quotes from inspirational quotes API
    **/
   async getPrompt() {
     try {
@@ -107,7 +76,7 @@ class Game {
   }
 
   /**
-   * renders prompt
+   * render prompt
    **/
   async renderPrompt() {
     const words = await this.getPrompt();
@@ -132,7 +101,7 @@ class Game {
   }
 
   /**
-   * clears prompt letter highlights on word match
+   * clear prompt letter highlights on word match
    **/
   clearPromptHighlights() {
     this.currentPrompt.forEach(promptTile => {
@@ -145,7 +114,7 @@ class Game {
   }
 
   /**
-   * changes the word count display
+   * change word count display
    **/
   updateWordCount() {
     this.wordCount++;
@@ -160,9 +129,50 @@ class Game {
   }
 
   /**
-   * checks score for matched words and updates total score
+   * timer function (setInterval in initGameStartEnd)
+   **/
+  updateTimer() {
+    const minutes = Math.floor(this.time / 60);
+    const seconds = this.time % 60;
+
+    if (this.time >= 0 && this.gameActive) {
+      minutes < 10 && seconds < 10
+        ? (this.timerDisplay.innerText = `0${minutes}:0${seconds}`)
+        : minutes < 10 && seconds >= 10
+        ? (this.timerDisplay.innerText = `0${minutes}:${seconds}`)
+        : (this.timerDisplay.innerText = `${minutes}:${seconds}`);
+
+      this.time--;
+    } else {
+      console.log('~ time out');
+      this.initGameStartEnd;
+    }
+  }
+
+  /**
+   * check for matched words and update score
    **/
   updateScore() {
+    /**
+     * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
+     **/
+    const letterScores = {
+      11: "aeilnorstu'.,;",
+      17: 'AEILNORSTU?":',
+      22: 'dg',
+      33: 'DG',
+      33: 'bcmp',
+      59: 'BCMP',
+      44: 'fhvwy',
+      66: 'FHVWY',
+      55: 'k',
+      82: 'K',
+      88: 'jx',
+      132: 'JX',
+      100: 'qz',
+      150: 'QZ',
+    };
+
     this.currentWordArray.forEach(letter => {
       for (const letterScore in letterScores) {
         if (letterScores[letterScore].includes(letter))
@@ -180,42 +190,32 @@ class Game {
   }
 
   /**
-   * timer function
+   * start/clear timer interval
    **/
-  updateTimer() {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-
-    if (this.time >= 0 && this.gameActive) {
-      minutes < 10 && seconds < 10
-        ? (this.timerDisplay.innerText = `0${minutes}:0${seconds}`)
-        : minutes < 10 && seconds >= 10
-        ? (this.timerDisplay.innerText = `0${minutes}:${seconds}`)
-        : (this.timerDisplay.innerText = `${minutes}:${seconds}`);
-
-      this.time--;
-    } else {
-      console.log('~ time out');
-      // initGame();
-    }
+  initGameStartEnd() {
+    const timerActive = setInterval(() => {
+      if (this.time < 0) {
+        clearInterval(timerActive);
+        gameOver();
+        this.gameActive = false;
+      } else this.updateTimer();
+    }, 1000);
   }
 
   /**
-   * if currentPrompt is empty and time > 0
-   * initiates game start and renders prompt on text input focus
+   * if game is not active, initiate game start and render prompt
    **/
   handleInputFocus() {
     if (!this.gameActive) {
-      console.log(this);
+      this.gameActive = true;
+      this.time = 3;
+      this.initGameStartEnd();
+      this.renderPrompt();
     }
-    // if (!gameActive) {
-    //   renderPrompt();
-    //   initGame();
-    // }
   }
 
   /**
-   * highlights prompt letters matching user input
+   * highlight prompt letters matching user input
    * TODO: fix delte glitches
    **/
   handleInput(e) {
@@ -252,8 +252,8 @@ class Game {
   }
 
   /**
-   * checks for matching word / removes prompTile if word matches,
-   * updates game stats and clears highlights
+   * check for matching word / remove prompTile if word matches,
+   * updateWordCount, clearPromptHighlights, userInput to null, clear currentWordArray
    **/
   handleEnter(e) {
     // if ((e.key === 'Enter' || e.key === ' ') && gameActive) {
@@ -276,27 +276,9 @@ class Game {
 
 const game = new Game();
 game.initialize();
-// console.log('~ game', game);
-game.renderPrompt();
-// console.log('~ game currentPrompt', game.currentPrompt);
 /**
  *********************************************************************************************
  **/
-
-/**
- * starts timer and sets gameStatus to true;
- **/
-function initGame() {
-  gameActive = true;
-  time = 3;
-
-  const timerActive = setInterval(() => {
-    if (time < 0) {
-      clearInterval(timerActive);
-      gameOver();
-    } else updateTimer();
-  }, 1000);
-}
 
 /**
  * TODO: handleInputFocusOut
@@ -328,8 +310,5 @@ function toggleModal(e) {
   });
 }
 
-// window.addEventListener('click', toggleModal);
-// userInput.addEventListener('focus', handleInputFocus);
+window.addEventListener('click', toggleModal);
 // userInput.addEventListener('focusout', handleInputFocusOut);
-// userInput.addEventListener('input', handleInput);
-// userInput.addEventListener('keydown', handleEnter);
