@@ -6,7 +6,7 @@ const timerDisplay = document.getElementById('timer');
 const scoreDisplay = document.getElementById('score');
 
 let wordCount = 0;
-let time = 2;
+let time = null;
 let score = 0;
 let difficulty = 'easy';
 let gameActive = false;
@@ -15,7 +15,7 @@ const currentWordArray = [];
 /**
  * toggle nav logo on scroll
  **/
-function toggleHiddenNavLogo() {
+function toggleNavLogo() {
   const navLogoImg = document.getElementById('nav-logo-img');
   const navLogoText = document.getElementById('nav-logo-text');
 
@@ -28,14 +28,14 @@ function toggleHiddenNavLogo() {
   }
 }
 
-document.addEventListener('scroll', toggleHiddenNavLogo);
+document.addEventListener('scroll', toggleNavLogo);
 
 /**
  * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
  **/
 const letterScores = {
-  11: 'aeilnorstu',
-  17: 'AEILNORSTU',
+  11: 'aeilnorstu\'.,;',
+  17: 'AEILNORSTU?":',
   22: 'dg',
   33: 'DG',
   33: 'bcmp',
@@ -91,10 +91,10 @@ async function getPrompt() {
 async function renderPrompt() {
   const words = await getPrompt();
 
-  // TODO: clear promptTiles if there are any there
-  // if (currentPrompt) {
-    // while (prompt.firstChild) prompt.remove(prompt.firstChild);
-  // }
+  // clear prompt tiles if there are any there
+  if (currentPrompt.length) {
+    prompt.innerHTML = '';
+  }
 
   words.forEach(word => {
     const promptTile = document.createElement('div');
@@ -163,9 +163,8 @@ function updateScore() {
 function updateTimer() {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  console.log('~ time', time);
 
-  if (time >= 0) {
+  if (time >= 0 && gameActive) {
     minutes < 10 && seconds < 10
       ? (timerDisplay.innerText = `0${minutes}:0${seconds}`)
       : minutes < 10 && seconds >= 10
@@ -184,9 +183,10 @@ function updateTimer() {
  **/
 function initGame() {
   gameActive = true;
+  time = 70;
+
   const timerActive = setInterval(() => {
     if (time < 0) {
-      console.log('~ initGame time', time)
       clearInterval(timerActive);
       gameOver();
     } else updateTimer();
@@ -198,9 +198,7 @@ function initGame() {
  * initiates game start and renders prompt on text input focus
  **/
 function handleInputFocus() {
-  if (gameActive === false) {
-  // if (!currentPrompt.length && gameActive === false) {
-  // if (!currentPrompt.length && time >= 0) {
+  if (!gameActive) {
     renderPrompt();
     initGame();
   }
@@ -255,7 +253,7 @@ function handleInput(e) {
  * updates game stats and clears highlights
  **/
 function handleEnter(e) {
-  if ((e.key === 'Enter' || e.key === ' ') && time >= 0) {
+  if ((e.key === 'Enter' || e.key === ' ') && gameActive) {
     currentPrompt.forEach(promptTile => {
       if (promptTile.id === currentWordArray.join('').trim()) {
         updateScore();
@@ -266,13 +264,14 @@ function handleEnter(e) {
         currentWordArray.splice(0, currentWordArray.length);
       }
     });
+
     // if prompt is empty, render new prompt
     if (!currentPrompt.length) renderPrompt();
   }
 }
 
 /**
- * TODO: gameOver: stops timer, toggles results modal and gameActive to false
+ * gameOver: stops timer, toggles results modal and gameActive to false
  **/
 function gameOver(e) {
   const modalGameOver = document.getElementById('game-over');
