@@ -94,7 +94,7 @@ main {
   -webkit-transform: scale(1.15);
 }
 
-#nav-button {
+#new-game-button {
   font-family: 'Fugaz One';
   font-size: 1.25rem;
   background-image: url('./img/button-flame.png');
@@ -107,7 +107,7 @@ main {
   transition: transform 100ms;
 }
 
-#nav-button:hover {
+#new-game-button:hover {
   color: #ff7a00;
   transform: scale(1.05);
   -ms-transform: scale(1.05);

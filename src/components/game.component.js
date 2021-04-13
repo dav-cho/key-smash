@@ -1,5 +1,6 @@
 import { Modal } from './modal.component.js';
-// import { modal, game } from '../app.js';
+import { Result } from './result.component.js';
+import { currentGame } from '../app.js';
 
 /**
  ***** Game **********************************************************************************
@@ -20,7 +21,7 @@ export class Game {
     this.score = 0;
     this.highScore = null;
     this.difficulty = 'easy';
-    this.gameActive = false;
+    this.active = false;
     this.currentWordArray = [];
   }
 
@@ -34,7 +35,7 @@ export class Game {
     this.scoreDisplay = document.getElementById('score');
 
     // event listeners
-    // this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
+    this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
   }
@@ -64,9 +65,7 @@ export class Game {
     const words = await this.getPrompt();
 
     // clear prompt tiles if there are any
-    if (this.currentPrompt.length) {
-      this.prompt.innerHTML = '';
-    }
+    this.clearPrompt();
 
     words.forEach(word => {
       const promptTile = document.createElement('div');
@@ -80,6 +79,15 @@ export class Game {
         promptTile.append(letterSpan);
       });
     });
+  }
+
+  /**
+   * clear prompt
+   **/
+  clearPrompt() {
+    if (this.currentPrompt.length) {
+      this.prompt.innerHTML = '';
+    }
   }
 
   /**
@@ -117,7 +125,7 @@ export class Game {
     const minutes = Math.floor(this.time / 60);
     const seconds = this.time % 60;
 
-    if (this.time >= 0 && this.gameActive) {
+    if (this.time >= 0 && this.active) {
       minutes < 10 && seconds < 10
         ? (this.timerDisplay.innerText = `0${minutes}:0${seconds}`)
         : minutes < 10 && seconds >= 10
@@ -132,9 +140,9 @@ export class Game {
 
   /**
    * check for matched words and update score
+   * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
    **/
   updateScore() {
-    // scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
     const letterScores = {
       11: "aeilnorstu'.,-;",
       17: 'AEILNORSTU?":',
@@ -217,7 +225,7 @@ export class Game {
    * updateWordCount, clearPromptHighlights, userInput to null, clear currentWordArray
    **/
   handleEnter(e) {
-    if ((e.key === 'Enter' || e.key === ' ') && this.gameActive) {
+    if ((e.key === 'Enter' || e.key === ' ') && this.active) {
       this.currentPrompt.forEach(promptTile => {
         if (promptTile.id === this.currentWordArray.join('').trim()) {
           this.updateScore();
@@ -238,9 +246,9 @@ export class Game {
    * if game is not active, initiate game start and render prompt
    **/
   handleInputFocus() {
-    if (!this.gameActive) {
-      this.gameActive = true;
-      this.time = 5;
+    if (!this.active) {
+      this.active = true;
+      this.time = 2;
       this.initGameStartEnd();
       this.renderPrompt();
     }
@@ -252,12 +260,17 @@ export class Game {
   initGameStartEnd() {
     const timerActive = setInterval(() => {
       if (this.time < 0) {
-        this.gameActive = false;
-
-        const gameOverModal = new Modal();
-        gameOverModal.initialize();
-        gameOverModal.gameOver();
+        this.active = false;
         clearInterval(timerActive);
+
+        const currentGameOver = new Modal();
+        currentGameOver.initialize();
+        currentGameOver.gameOverModal.style.display = 'block';
+
+        const currentResults = new Result(currentGame);
+        currentResults.initialize();
+        currentResults.displayResults();
+        
       } else this.updateTimer();
     }, 1000);
   }

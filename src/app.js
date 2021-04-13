@@ -1,12 +1,7 @@
-import { Modal } from './components/modal.component.js';
 import { Game } from './components/game.component.js';
-
-// export const modal = new Modal();
-// modal.initialize();
-// export const game = new Game();
-
-const navLinks = document.getElementById('nav-links');
-const userInput = document.getElementById('user-input');
+import { Modal } from './components/modal.component.js';
+// import { Modal } from './components/modal.component.js';
+// import { Result } from './components/result.component.js';
 
 /**
  * toggle nav logo on scroll
@@ -25,42 +20,31 @@ function toggleNavLogo() {
 }
 
 document.addEventListener('scroll', toggleNavLogo);
-navLinks.addEventListener('click', e => {
+
+/**
+ * toggle nav link modals
+ **/
+
+function openNavLinkModals(e) {
+  console.log('~ e', e.target);
+  e.preventDefault();
+
   const navModal = new Modal();
   navModal.initialize();
-  navModal.showModals(e);
-});
-userInput.addEventListener('focus', () => {
-  const game = new Game();
+  navModal.toggleModals(e);
+}
 
-  game.gameActive = true;
-  game.time = 2;
-
-  game.initialize();
-  game.initGameStartEnd();
-  game.renderPrompt();
-});
-
-// function handleInputFocus() {
-//   if (!game.gameActive) {
-//     game.gameActive = true;
-//     game.time = 10;
-
-//     game.initialize();
-//     game.initGameStartEnd();
-//     game.renderPrompt();
-//   }
-// }
+document.addEventListener('click', openNavLinkModals);
 
 /**
  *********************************************************************************************
  **/
 
-/**
- * TODO: handleInputFocusOut
- **/
-function handleInputFocusOut() {
-  // stops timer when input loses focus
-}
+// export let currentModal = new Modal();
+// currentModal.initialize();
 
-// userInput.addEventListener('focusout', handleInputFocusOut);
+export let currentGame = new Game();
+currentGame.initialize();
+
+// export let currentResult = new Result();
+// currentResult.initialize();

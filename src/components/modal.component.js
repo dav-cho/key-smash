@@ -1,4 +1,6 @@
-// import { modal, game } from '../app.js';
+import { currentGame } from '../app.js';
+// import { Game } from './game.component.js';
+// import { Result } from './result.component.js';
 
 /**
  ***** Modals ********************************************************************************
@@ -6,39 +8,39 @@
 export class Modal {
   constructor() {
     // dom selectors
-    this.navLinks = null;
     this.optionsModal = null;
-    this.optionsContainers = null;
-    this.timeContainer = null;
+    this.newGameModal = null;
+    this.gameOverModal = null;
+    this.playAgainButton = null;
     this.modals = null;
 
     // modal properties
     this.difficulty = null;
-    this.time = null;
   }
 
   initialize() {
     // initialize dom selectors
-    // this.navLinks = document.getElementById('nav-links');
-    this.optionsModal = document.getElementById('options');
-    this.optionsContainers = document.querySelectorAll('.options-container');
+    this.optionsModal = document.getElementById('options-modal');
+    this.newGameModal = document.getElementById('new-game-modal');
+    this.gameOverModal = document.getElementById('game-over-modal');
+    this.playAgainButton = document.getElementById('play-again-button');
     this.modals = document.querySelectorAll('.modal');
 
     // event listeners
-    // this.navLinks.addEventListener('click', this.showModals.bind(this));
-    this.optionsModal.addEventListener('click', this.selectOptions);
+    this.playAgainButton.addEventListener('click', this.playAgain.bind(this));
     window.addEventListener('click', this.hideModals.bind(this));
   }
 
-
-/**
- * show modals on click
- **/
-  showModals(e) {
-    e.preventDefault();
-
+  /**
+   * toggle modals
+   **/
+  toggleModals(e) {
     if (e.target.id === 'options-link') {
       this.optionsModal.style.display = 'block';
+    }
+
+    if (e.target.id === 'new-game-button') {
+      this.newGameModal.style.display = 'block';
     }
   }
 
@@ -47,53 +49,32 @@ export class Modal {
    **/
   selectOptions(e) {
     if (e.target.value === 'on') {
-      console.log('~ e', e);
-      // console.log('~ e.target', e.target);
       // this.clearOptionsButtons();
       e.target.nextElementSibling.classList.add('selected');
       e.target.previousElementSibling.classList.add('selected');
     }
-
-    // if (e.target.value === 'on') {
-    //   this.difficulty = e.target.id;
-    //   Game.difficulty = e.target.id;
-    //   game.difficulty = e.target.id;
-    //   console.log('~ Game.difficulty', Game.difficulty);
-    //   console.log('~ game difficulty', game.difficulty);
-    //   console.log('~ modal difficulty', modal.difficulty);
-
-    // const selected = document.querySelector('.selected');
-    // selectedDifficulty.classList.remove('selected-difficulty');
-    //   e.target.nextElementSibling.classList.add('selected');
-    // }
   }
 
   /**
-   * clear options buttons
+   * play again
    **/
-  clearOptionsButtons() {
-    this.optionsContainers.forEach(container => {
-      console.log('~ container', container);
-    });
-  }
-
-  /**
-   * gameOver: stops timer, toggles results modal and gameActive to false
-   * TODO: move to Game class?
-   **/
-  gameOver() {
-    const modalGameOver = document.getElementById('game-over');
-    modalGameOver.style.display = 'block';
-
-    const result = new Results(game);
-    result.initialize();
-    result.displayResults();
+  playAgain() {
+    currentGame.active = false;
   }
 
   /**
    * hide modals
    **/
   hideModals(e) {
+    if (e.target.id === 'new-game-yes' || e.target.id === 'new-game-no') {
+      this.newGameModal.style.display = 'none';
+    }
+
+    if (e.target.id === 'play-again-button') {
+      this.gameOverModal.style.display = 'none';
+      this.playAgain();
+    }
+
     this.modals.forEach(modal => {
       if (e.target === modal) modal.style.display = 'none';
     });
@@ -101,31 +82,5 @@ export class Modal {
 }
 
 /**
- ***** Results *******************************************************************************
+ *********************************************************************************************
  **/
-class Results {
-  constructor(currentGame) {
-    // dom selectors
-    this.wordCountResults = null;
-    this.scoreResults = null;
-    this.highScoreResults = null;
-
-    // result properties
-    this.wordCount = currentGame.wordCount;
-    this.score = currentGame.score;
-    this.highScore = currentGame.highScore;
-  }
-
-  initialize() {
-    // initialize dom selectors
-    this.wordCountResults = document.getElementById('word-count-results');
-    this.scoreResults = document.getElementById('score-results');
-    this.highScoreResults = document.getElementById('high-score');
-  }
-
-  displayResults() {
-    this.wordCountResults.innerText = this.wordCount;
-    this.scoreResults.innerText = this.score;
-    this.highScoreResults.innerText = this.highScore;
-  }
-}

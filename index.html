@@ -27,7 +27,7 @@
       <a href="" class="nav-link" id="game-mode-link">Game Mode</a>
       <a href="" class="nav-link" id="options-link">Options</a>
       <a href="" class="nav-link" id="instructions-link">Instructions</a>
-      <button id="nav-button">REGISTER</button>
+      <button id="new-game-button">New Game</button>
     </div>
   </nav>
 
@@ -58,7 +58,7 @@
       <input id="user-input" placeholder="type here" type="text">
     </section>
 
-    <section id="options" class="modal">
+    <section id="options-modal" class="modal">
       <div id="options-content" class="modal-content">
         <h1>Options</h1>
         <div id="difficulty-container" class="options-container">
@@ -102,7 +102,18 @@
       </div>
     </section>
 
-    <section id="game-over" class="modal">
+    <section id="new-game-modal" class="modal">
+      <div id="new-game-content" class="modal-content">
+        <h1>New Game</h1>
+        <div id="new-game-confirm">
+          <div id="new-game-heading">Are You Sure?</div>
+          <button id="new-game-yes">YES</button>
+          <button id="new-game-no">NO</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-over-modal" class="modal">
       <div id="game-over-content" class="modal-content">
         <h1>GAME OVER</h1>
         <div id="high-score-container">High Score:
@@ -118,6 +129,7 @@
             <div id="score-results"></div>
           </div>
         </div>
+        <button id="play-again-button">Play Again</button>
       </div>
     </section>
   </main>
