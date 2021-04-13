@@ -316,8 +316,9 @@ class Modal {
   constructor() {
     // dom selectors
     this.navLinks = null;
-    this.options = null;
-    this.difficultySelect = null;
+    this.optionsModal = null;
+    this.optionsContainers = null;
+    this.timeContainer = null;
     this.modals = null;
 
     // modal properties
@@ -326,30 +327,63 @@ class Modal {
   }
 
   initialize() {
+    // initialize dom selectors
     this.navLinks = document.getElementById('nav-links');
-    this.options = document.getElementById('options');
-    this.difficultySelect = document.getElementById('difficulty-container');
+    this.optionsModal = document.getElementById('options');
+    this.optionsContainers = document.querySelectorAll('.options-container');
     this.modals = document.querySelectorAll('.modal');
 
-    this.navLinks.addEventListener('click', this.toggleOptions.bind(this));
-    window.addEventListener('click', this.toggleModals.bind(this));
+    // event listeners
+    this.navLinks.addEventListener('click', this.showModals.bind(this));
+    this.optionsModal.addEventListener('click', this.selectOptions);
+    window.addEventListener('click', this.hideModals.bind(this));
   }
 
-  toggleOptions(e) {
+  showModals(e) {
     e.preventDefault();
-    console.log('~ e.target', e.target.id);
 
     if (e.target.id === 'options-link') {
-      this.options.style.display = 'block';
+      this.optionsModal.style.display = 'block';
     }
   }
   /**
    * difficulty selection
    **/
-  difficulty(e) {}
+  selectOptions(e) {
+    if (e.target.value === 'on') {
+      console.log('~ e', e);
+      // console.log('~ e.target', e.target);
+      // this.clearOptionsButtons();
+      e.target.nextElementSibling.classList.add('selected');
+      e.target.previousElementSibling.classList.add('selected');
+    }
+
+    // if (e.target.value === 'on') {
+    //   this.difficulty = e.target.id;
+    //   Game.difficulty = e.target.id;
+    //   game.difficulty = e.target.id;
+    //   console.log('~ Game.difficulty', Game.difficulty);
+    //   console.log('~ game difficulty', game.difficulty);
+    //   console.log('~ modal difficulty', modal.difficulty);
+
+    // const selected = document.querySelector('.selected');
+    // selectedDifficulty.classList.remove('selected-difficulty');
+    //   e.target.nextElementSibling.classList.add('selected');
+    // }
+  }
+
+  /**
+   * clear options buttons
+   **/
+  clearOptionsButtons() {
+    this.optionsContainers.forEach(container => {
+      console.log('~ container', container);
+    })
+  }
 
   /**
    * gameOver: stops timer, toggles results modal and gameActive to false
+   * TODO: move to Game class?
    **/
   gameOver() {
     const modalGameOver = document.getElementById('game-over');
@@ -361,9 +395,9 @@ class Modal {
   }
 
   /**
-   * modal toggle
+   * hide modal toggle
    **/
-  toggleModals(e) {
+  hideModals(e) {
     this.modals.forEach(modal => {
       if (e.target === modal) modal.style.display = 'none';
     });
