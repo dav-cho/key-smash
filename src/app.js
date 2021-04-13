@@ -17,12 +17,7 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
- * game options nav link
- **/
-function toggleOptionsModal() {}
-
-/**
- *********************************************************************************************
+ ***** Gameplay ******************************************************************************
  **/
 class Game {
   constructor() {
@@ -59,7 +54,6 @@ class Game {
     this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
-    // userInput.addEventListener('focusout', handleInputFocusOut);
   }
 
   /**
@@ -285,9 +279,6 @@ class Game {
   }
 }
 
-/**
- *********************************************************************************************
- **/
 class Results {
   constructor(currentGame) {
     // dom selectors
@@ -314,19 +305,9 @@ class Results {
     this.highScoreResults.innerText = this.highScore;
   }
 }
-/**
- *********************************************************************************************
- **/
 
 const game = new Game();
 game.initialize();
-
-/**
- * TODO: handleInputFocusOut
- **/
-function handleInputFocusOut() {
-  // stops timer when input loses focus
-}
 
 /**
  * gameOver: stops timer, toggles results modal and gameActive to false
@@ -334,12 +315,36 @@ function handleInputFocusOut() {
 function gameOver() {
   const modalGameOver = document.getElementById('game-over');
   modalGameOver.style.display = 'block';
-  gameActive = false;
 
   const result = new Results(game);
   result.initialize();
   result.displayResults();
 }
+
+/**
+ ***** Modal Toggles ****************************************************************************************
+ **/
+class Modal {
+  constructor() {}
+}
+
+/**
+ * options modal
+ **/
+const navLinks = document.getElementById('nav-links');
+
+function toggleOptions(e) {
+  e.preventDefault();
+  // const optionsLink = document.getElementById('options-link');
+  const modalOptions = document.getElementById('options');
+  console.log('~ e.target', e.target.id);
+
+  if (e.target.id === 'options-link') {
+    modalOptions.style.display = 'block';
+  }
+}
+
+navLinks.addEventListener('click', toggleOptions);
 
 /**
  * modal toggle
@@ -353,4 +358,16 @@ function toggleModal(e) {
 }
 
 window.addEventListener('click', toggleModal);
+
+/**
+ *********************************************************************************************
+ **/
+
+/**
+ * TODO: handleInputFocusOut
+ **/
+function handleInputFocusOut() {
+  // stops timer when input loses focus
+}
+
 // userInput.addEventListener('focusout', handleInputFocusOut);
