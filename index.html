@@ -20,7 +20,7 @@
 
   <nav id="nav-main">
     <div id="nav-logo">
-      <img id="nav-logo-img" src="./img/nav-logo.png" alt="Key Smash Logo">
+      <img src="./img/nav-logo.png" alt="Key Smash Logo" id="nav-logo-img">
       <span id="nav-logo-text">TYPING GAME</span>
     </div>
     <div id="nav-links">
@@ -32,21 +32,19 @@
   </nav>
 
   <main>
-    <div id="game-mode-header">
-      <h2>CHALLENGE MODE</h2>
-    </div>
+    <h2 id="game-mode-header">CHALLENGE MODE</h2>
 
     <section id="stats">
       <div class="stats-container">
-        <div class="stats-heading">Word Count</div>
+        <div class="stats-header">Word Count</div>
         <div id="word-count">0000</div>
       </div>
       <div class="stats-container">
-        <div class="stats-heading">Timer</div>
+        <div class="stats-header">Timer</div>
         <div id="timer">00:00</div>
       </div>
       <div class="stats-container">
-        <div class="stats-heading">Score</div>
+        <div class="stats-header">Score</div>
         <div id="score">0000</div>
       </div>
     </section>
@@ -58,51 +56,39 @@
       <input id="user-input" placeholder="type here" type="text">
     </section>
 
-    <section id="options" class="modal">
-      <div id="options-content" class="modal-content">
-        <h1>Options</h1>
-        <div id="difficulty-container" class="options-container">
-          <div class="options-heading">Difficulty</div>
-          <input type="radio" id="easy" name="difficulty">
-          <label for="easy" class="options-button selected">Easy
-          </label>
-          <input type="radio" id="medium" name="difficulty">
-          <label for="medium" class="options-button">Medium
-          </label>
-          <input type="radio" id="hard" name="difficulty">
-          <label for="hard" class="options-button">Hard
-          </label>
-        </div>
-
-        <div id="time-container" class="options-container">
-          <div class="options-heading">Time</div>
-          <input type="radio" id="thirty-seconds" name="time">
-          <label for="thirty-seconds" class="options-button selected">00:30
-          </label>
-          <input type="radio" id="sixty-seconds" name="time">
-          <label for="sixty-seconds" class="options-button">01:00
-          </label>
-          <input type="radio" id="ninety-seconds" name="time">
-          <label for="ninety-seconds" class="options-button">01:30
-          </label>
-        </div>
-
+    <section id="game-mode-modal" class="modal">
+      <div id="game-mode-content" class="modal-content">
+        <h1>Game Mode</h1>
         <div id="game-mode-container" class="options-container">
-          <div class="options-heading">Game Mode</div>
-          <input type="radio" id="normal" name="game-mode">
-          <label for="easy" class="options-button selected">Easy
-          </label>
-          <input type="radio" id="challenge" name="game-mode">
-          <label for="challenge" class="options-button">Medium
-          </label>
-          <input type="radio" id="accuracy" name="game-mode">
-          <label for="accuracy" class="options-button">Hard
-          </label>
+          <div class="game-mode-header">Game Mode</div>
+          <button id="normal" class="options-button">Normal</button>
+          <button id="challenge" class="options-button selected">Challenge</button>
+          <button id="accuracy" class="options-button">Accuracy</button>
         </div>
       </div>
     </section>
 
-    <section id="game-over" class="modal">
+    <section id="options-modal" class="modal">
+      <div id="options-content" class="modal-content">
+        <h1>Options</h1>
+        <div id="options-container">
+          <div id="difficulty-container" class="options-container">
+            <div class="options-header">Difficulty</div>
+            <button id="easy" class="options-button selected">Easy</button>
+            <button id="medium" class="options-button">Medium</button>
+            <button id="hard" class="options-button">Hard</button>
+          </div>
+          <div id="time-container" class="options-container">
+            <div class="options-header">Time</div>
+            <button id="30" class="options-button selected">00:30</button>
+            <button id="60" class="options-button">01:00</button>
+            <button id="90" class="options-button">01:30</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-over-modal" class="modal">
       <div id="game-over-content" class="modal-content">
         <h1>GAME OVER</h1>
         <div id="high-score-container">High Score:
@@ -110,11 +96,11 @@
         </div>
         <div id="results">
           <div class="results-container">
-            <div class="results-heading">Word Count</div>
+            <div class="results-header">Word Count</div>
             <div id="word-count-results"></div>
           </div>
           <div class="results-container">
-            <div class="results-heading">Score</div>
+            <div class="results-header">Score</div>
             <div id="score-results"></div>
           </div>
         </div>
@@ -124,18 +110,11 @@
 
   <footer>
     <nav id="nav-footer">
-      <div class="footer-link">
-        <a href="">link 1</a>
+      <div class="footer-game-mode">
       </div>
-      <div class="footer-link">
-        <a href="">link 2</a>
+      <div class="footer-difficulty">
       </div>
-      <div class="footer-link">
-        <a href="">link 3</a>
-      </div>
-      <div class="footer-link">
-        <a href="">link 4</a>
-      </div>
+      <div class="footer-time">
     </nav>
   </footer>
 

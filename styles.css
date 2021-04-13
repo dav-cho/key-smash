@@ -2,14 +2,11 @@ html {
   width: 100%;
   margin: 0;
   padding: 0;
-  padding-bottom: 4rem;
-  min-width: 925px;
-  height: 900px;
-  /* height: 100%; */
+  min-width: 945px;
 }
 
 body {
-  height: 100%;
+  font-family: 'Fugaz One';
   text-align: center;
   margin: 0;
   background-image: url('./img/retro-grid-1.jpeg');
@@ -21,20 +18,11 @@ body {
 
 header {
   background-color: black;
-}
-
-header img {
-  padding: 3rem 0;
-}
-
-main {
-  height: 87%;
+  padding: 3rem;
 }
 
 #nav-main {
-  font-family: 'Fugaz One';
   background-color: #ecd400;
-  margin: 0 auto;
   padding: 0.4rem;
   display: flex;
   justify-content: space-between;
@@ -44,19 +32,16 @@ main {
   top: 0;
 }
 
-
 #nav-logo {
-  display: flex;
-  width: 50%;
+  text-align: left;
   margin-left: 0.5rem;
-  /* object-fit: contain; */
 }
 
-#nav-logo-img {
+#nav-logo img {
   display: none;
 }
 
-#nav-logo-text {
+#nav-logo span {
   font-size: 2rem;
   padding: 0.2rem 0.5rem 0 0.5rem;
   background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 85%);
@@ -74,7 +59,7 @@ main {
 }
 
 .nav-link {
-  display: block;
+  display: inline;
   font-size: 1.15rem;
   padding: 0 0.75rem;
   text-decoration: none;
@@ -115,15 +100,13 @@ main {
 }
 
 main {
-  font-family: 'Fugaz One';
+  margin-bottom: 10rem;
 }
 
-#game-mode-header h2 {
+#game-mode-header {
   font-size: 3rem;
-  /* margin: 1.5rem; */
-  /* padding-top: 4rem; */
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin: 3rem;
+  padding-top: 0.5rem;
   background-image: linear-gradient(0deg, #d70000 0%, #ff7a00 60%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -137,8 +120,9 @@ main {
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
-  width: 60%;
-  margin: 4rem auto 0.5rem auto;
+  align-items: center;
+  width: 40rem;
+  margin: 2rem auto;
 }
 
 .stats-container {
@@ -148,10 +132,10 @@ main {
   height: 6rem;
   background-color: #ebebeb;
   border-radius: 0.5rem;
+  margin-top: 2rem;
 }
 
-.stats-heading {
-  /* background-color: #ECD400; */
+.stats-header {
   background: linear-gradient(#ECD400 5%, #ff7a00 120%);
   padding: 0.2rem 0 0.1rem 0;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -165,15 +149,14 @@ main {
 }
 
 #game-play {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 2.5rem;
 }
 
 #prompt-wrapper {
   width: 70%;
-  height: 16rem;
-  margin: 1.5rem auto 3rem auto;
+  height: 20rem;
+  margin: 1.5rem auto;
+  /* margin: 1.5rem auto 3rem auto; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,12 +176,10 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  /* align-items: flex-start; */
   border-radius: 1rem;
 }
 
 .prompt-tile {
-  /* margin: 0.3rem 0.1rem; */
   margin: 0.1rem;
   padding: 0.2rem 1rem 0.4rem 1rem;
   background-color: lightgray;
@@ -218,10 +199,38 @@ main {
   height: 4rem;
   border: 0.45rem solid #d70000;
   border-radius: 1rem;
+  margin-top: 1.5rem;
 }
 
 #user-input:focus {
   outline: none;
+}
+
+footer {
+  /* opacity: 0; */
+}
+
+footer a {
+  font-family: 'Fugaz One';
+  font-size: 1.2rem;
+  color: black;
+  text-decoration: none;
+}
+
+#nav-footer {
+  opacity: 0;
+  background-color: #d70000;
+  height: 2.75rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.footer-link {
+  margin: 0 1rem;
 }
 
 .modal {
@@ -256,7 +265,18 @@ main {
   margin-top: 3%;
 }
 
-.options-heading {
+#options-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.options-container {
+  width: 30%;
+}
+
+.options-header {
   width: 100%;
   font-size: 1.25rem;
   padding-bottom: 0.75rem;
@@ -334,7 +354,7 @@ main {
   align-items: center;
 }
 
-.results-heading {
+.results-header {
   font-size: 1.25rem;
   width: 100%;
   background: linear-gradient(#ECD400 5%, #ff7a00 120%);
@@ -347,26 +367,4 @@ main {
 #score-results {
   font-size: 2rem;
   padding: 2% 0;
-}
-
-footer a {
-  font-family: 'Fugaz One';
-  font-size: 1.2rem;
-  color: black;
-  text-decoration: none;
-}
-
-#nav-footer {
-  background-color: #d70000;
-  height: 2.75rem;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid red;
-}
-
-.footer-link {
-  margin: 0 1rem;
 }

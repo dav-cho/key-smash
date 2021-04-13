@@ -17,6 +17,34 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
+ * toggle footer on hover
+ **/
+const navFooter = document.getElementById('nav-footer');
+
+function toggleFooter(e) {
+  if (e.type === 'mouseenter') {
+    navFooter.style.opacity = 1;
+  } else {
+    setTimeout(() => (navFooter.style.opacity = 0), 1000);
+  }
+
+  const footerGameMode = document.getElementById('footer-game-mode');
+  const footerDifficulty = document.getElementById('footer-difficulty');
+  const footerTime = document.getElementById('footer-time');
+
+  footerGameMode.innerText = game.gameMode;
+  footerDifficulty.innerText = game.difficulty;
+  footerTime.innerText = game.time;
+}
+
+navFooter.addEventListener('mouseenter', toggleFooter);
+navFooter.addEventListener('mouseleave', toggleFooter);
+
+/**
+ * footer display
+ **/
+
+/**
  ***** Game **********************************************************************************
  **/
 class Game {
@@ -28,13 +56,15 @@ class Game {
     this.wordCountDisplay = null;
     this.timerDisplay = null;
     this.scoreDisplay = null;
+    this.optionsButtons = null;
 
     // game stat properties
-    this.wordCount = 0;
+    this.gameMode = null;
+    this.difficulty = null;
     this.time = null;
-    this.score = 0;
     this.highScore = null;
-    this.difficulty = 'easy';
+    this.wordCount = 0;
+    this.score = 0;
     this.gameActive = false;
     this.currentWordArray = [];
   }
@@ -47,12 +77,38 @@ class Game {
     this.wordCountDisplay = document.getElementById('word-count');
     this.timerDisplay = document.getElementById('timer');
     this.scoreDisplay = document.getElementById('score');
+    this.optionsButtons = document.querySelectorAll('.options-button');
 
     // event listeners
     this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
   }
+
+  /**
+   * get game options
+   **/
+  getGameOptions() {
+    this.optionsButtons.forEach(button => {
+      if (button.classList.contains('selected')) {
+        if (button.parentElement.id === 'game-mode-container')
+          this.gameMode = button.id;
+        if (button.parentElement.id === 'difficulty-container')
+          this.difficulty = button.id;
+        if (button.parentElement.id === 'time-container') this.time = button.id;
+      }
+    });
+  }
+
+
+/**
+ * new game
+ **/
+newGame() {
+  this.getGameOptions();
+  this.wordCount = 0;
+  this.score = 0;
+}
 
   /**
    * fetch quotes from inspirational quotes API
@@ -147,9 +203,9 @@ class Game {
 
   /**
    * check for matched words and update score
+   * scoring system based on scrabble (uppercase letters get ~1.5x)
    **/
   updateScore() {
-    // scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
     const letterScores = {
       11: "aeilnorstu'.,-;",
       17: 'AEILNORSTU?":',
@@ -195,7 +251,7 @@ class Game {
    * TODO: fix delete glitches
    **/
   handleInput(e) {
-    if (e.data) {
+    if (e.data && this.gameActive) {
       this.currentWordArray.push(e.data);
 
       this.currentPrompt.forEach(promptTile => {
@@ -255,7 +311,8 @@ class Game {
   handleInputFocus() {
     if (!this.gameActive) {
       this.gameActive = true;
-      this.time = 5;
+      // this.time = 5;
+      this.newGame();
       this.initGameStartEnd();
       this.renderPrompt();
     }
@@ -267,17 +324,13 @@ class Game {
   initGameStartEnd() {
     const timerActive = setInterval(() => {
       if (this.time < 0) {
-        clearInterval(timerActive);
-        // gameOver();
-        modal.gameOver();
         this.gameActive = false;
+        clearInterval(timerActive);
+        modal.gameOver();
       } else this.updateTimer();
     }, 1000);
   }
 }
-
-const game = new Game();
-game.initialize();
 
 /**
  ***** Results *******************************************************************************
@@ -316,8 +369,8 @@ class Modal {
   constructor() {
     // dom selectors
     this.navLinks = null;
+    this.gameModeModal = null;
     this.optionsModal = null;
-    this.optionsContainers = null;
     this.timeContainer = null;
     this.modals = null;
 
@@ -329,56 +382,67 @@ class Modal {
   initialize() {
     // initialize dom selectors
     this.navLinks = document.getElementById('nav-links');
-    this.optionsModal = document.getElementById('options');
-    this.optionsContainers = document.querySelectorAll('.options-container');
+    this.gameModeModal = document.getElementById('game-mode-modal');
+    this.optionsModal = document.getElementById('options-modal');
     this.modals = document.querySelectorAll('.modal');
 
     // event listeners
     this.navLinks.addEventListener('click', this.showModals.bind(this));
-    this.optionsModal.addEventListener('click', this.selectOptions);
+    this.gameModeModal.addEventListener(
+      'click',
+      this.selectGameMode.bind(this)
+    );
+    this.optionsModal.addEventListener('click', this.selectOptions.bind(this));
     window.addEventListener('click', this.hideModals.bind(this));
   }
 
+  /**
+   * toggle modals
+   **/
   showModals(e) {
     e.preventDefault();
+
+    if (e.target.id === 'game-mode-link') {
+      this.gameModeModal.style.display = 'block';
+    }
 
     if (e.target.id === 'options-link') {
       this.optionsModal.style.display = 'block';
     }
   }
+
+  /**
+   * select game mode
+   **/
+  selectGameMode(e) {
+    this.highlightButtons(e);
+
+    // if (e.target.tagName === 'BUTTON') game.gameMode = e.target.id;
+  }
+
   /**
    * difficulty selection
    **/
   selectOptions(e) {
-    if (e.target.value === 'on') {
-      console.log('~ e', e);
-      // console.log('~ e.target', e.target);
-      // this.clearOptionsButtons();
-      e.target.nextElementSibling.classList.add('selected');
-      e.target.previousElementSibling.classList.add('selected');
-    }
+    this.highlightButtons(e);
 
-    // if (e.target.value === 'on') {
-    //   this.difficulty = e.target.id;
-    //   Game.difficulty = e.target.id;
-    //   game.difficulty = e.target.id;
-    //   console.log('~ Game.difficulty', Game.difficulty);
-    //   console.log('~ game difficulty', game.difficulty);
-    //   console.log('~ modal difficulty', modal.difficulty);
-
-    // const selected = document.querySelector('.selected');
-    // selectedDifficulty.classList.remove('selected-difficulty');
-    //   e.target.nextElementSibling.classList.add('selected');
-    // }
+    // if (+e.target.id) game.time = +e.target.id;
+    // else if (e.target.tagName === 'BUTTON') game.difficulty = e.target.id;
   }
 
   /**
-   * clear options buttons
+   * button highlights
    **/
-  clearOptionsButtons() {
-    this.optionsContainers.forEach(container => {
-      console.log('~ container', container);
-    })
+  highlightButtons(e) {
+    const parent = e.target.parentElement.childNodes;
+
+    parent.forEach(child => {
+      if (child.tagName === 'BUTTON' && child.classList.contains('selected')) {
+        child.classList.remove('selected');
+      }
+    });
+
+    e.target.classList.add('selected');
   }
 
   /**
@@ -386,7 +450,7 @@ class Modal {
    * TODO: move to Game class?
    **/
   gameOver() {
-    const modalGameOver = document.getElementById('game-over');
+    const modalGameOver = document.getElementById('game-over-modal');
     modalGameOver.style.display = 'block';
 
     const result = new Results(game);
@@ -404,18 +468,12 @@ class Modal {
   }
 }
 
-const modal = new Modal();
-modal.initialize();
-
 /**
  *********************************************************************************************
  **/
 
-/**
- * TODO: handleInputFocusOut
- **/
-function handleInputFocusOut() {
-  // stops timer when input loses focus
-}
+const game = new Game();
+game.initialize();
 
-// userInput.addEventListener('focusout', handleInputFocusOut);
+const modal = new Modal();
+modal.initialize();
