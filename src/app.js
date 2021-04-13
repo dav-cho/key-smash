@@ -17,7 +17,7 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
- ***** Gameplay ******************************************************************************
+ ***** Game **********************************************************************************
  **/
 class Game {
   constructor() {
@@ -48,9 +48,7 @@ class Game {
     this.timerDisplay = document.getElementById('timer');
     this.scoreDisplay = document.getElementById('score');
 
-    /**
-     * event listeners
-     **/
+    // event listeners
     this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
@@ -80,7 +78,7 @@ class Game {
   async renderPrompt() {
     const words = await this.getPrompt();
 
-    // clear prompt tiles if there are any there
+    // clear prompt tiles if there are any
     if (this.currentPrompt.length) {
       this.prompt.innerHTML = '';
     }
@@ -151,9 +149,7 @@ class Game {
    * check for matched words and update score
    **/
   updateScore() {
-    /**
-     * scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
-     **/
+    // scoring system based on scrabble letter scores (uppercase letters get ~1.5x)
     const letterScores = {
       11: "aeilnorstu'.,-;",
       17: 'AEILNORSTU?":',
@@ -196,7 +192,7 @@ class Game {
 
   /**
    * highlight prompt letters matching user input
-   * TODO: fix delte glitches
+   * TODO: fix delete glitches
    **/
   handleInput(e) {
     if (e.data) {
@@ -272,13 +268,20 @@ class Game {
     const timerActive = setInterval(() => {
       if (this.time < 0) {
         clearInterval(timerActive);
-        gameOver();
+        // gameOver();
+        modal.gameOver();
         this.gameActive = false;
       } else this.updateTimer();
     }, 1000);
   }
 }
 
+const game = new Game();
+game.initialize();
+
+/**
+ ***** Results *******************************************************************************
+ **/
 class Results {
   constructor(currentGame) {
     // dom selectors
@@ -306,69 +309,69 @@ class Results {
   }
 }
 
-const game = new Game();
-game.initialize();
-
-/**
- * gameOver: stops timer, toggles results modal and gameActive to false
- **/
-function gameOver() {
-  const modalGameOver = document.getElementById('game-over');
-  modalGameOver.style.display = 'block';
-
-  const result = new Results(game);
-  result.initialize();
-  result.displayResults();
-}
-
 /**
  ***** Modals ********************************************************************************
  **/
 class Modal {
   constructor() {
     // dom selectors
+    this.navLinks = null;
     this.options = null;
+    this.difficultySelect = null;
+    this.modals = null;
 
     // modal properties
     this.difficulty = null;
+    this.time = null;
+  }
+
+  initialize() {
+    this.navLinks = document.getElementById('nav-links');
+    this.options = document.getElementById('options');
+    this.difficultySelect = document.getElementById('difficulty-container');
+    this.modals = document.querySelectorAll('.modal');
+
+    this.navLinks.addEventListener('click', this.toggleOptions.bind(this));
+    window.addEventListener('click', this.toggleModals.bind(this));
+  }
+
+  toggleOptions(e) {
+    e.preventDefault();
+    console.log('~ e.target', e.target.id);
+
+    if (e.target.id === 'options-link') {
+      this.options.style.display = 'block';
+    }
+  }
+  /**
+   * difficulty selection
+   **/
+  difficulty(e) {}
+
+  /**
+   * gameOver: stops timer, toggles results modal and gameActive to false
+   **/
+  gameOver() {
+    const modalGameOver = document.getElementById('game-over');
+    modalGameOver.style.display = 'block';
+
+    const result = new Results(game);
+    result.initialize();
+    result.displayResults();
+  }
+
+  /**
+   * modal toggle
+   **/
+  toggleModals(e) {
+    this.modals.forEach(modal => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
   }
 }
 
-/**
- * options modal
- **/
-const navLinks = document.getElementById('nav-links');
-
-function toggleOptions(e) {
-  e.preventDefault();
-  // const optionsLink = document.getElementById('options-link');
-  const modalOptions = document.getElementById('options');
-  console.log('~ e.target', e.target.id);
-
-  if (e.target.id === 'options-link') {
-    modalOptions.style.display = 'block';
-  }
-}
-
-navLinks.addEventListener('click', toggleOptions);
-
-/**
- * difficulty selection
- **/
-
-
-/**
- * modal toggle
- **/
-function toggleModal(e) {
-  const modals = document.querySelectorAll('.modal');
-
-  modals.forEach(modal => {
-    if (e.target === modal) modal.style.display = 'none';
-  });
-}
-
-window.addEventListener('click', toggleModal);
+const modal = new Modal();
+modal.initialize();
 
 /**
  *********************************************************************************************
