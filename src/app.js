@@ -286,7 +286,7 @@ class Results {
     this.scoreResults = null;
     this.highScoreResults = null;
 
-    // result stats properties
+    // result properties
     this.wordCount = currentGame.wordCount;
     this.score = currentGame.score;
     this.highScore = currentGame.highScore;
@@ -325,7 +325,13 @@ function gameOver() {
  ***** Modals ********************************************************************************
  **/
 class Modal {
-  constructor() {}
+  constructor() {
+    // dom selectors
+    this.options = null;
+
+    // modal properties
+    this.difficulty = null;
+  }
 }
 
 /**
@@ -345,6 +351,11 @@ function toggleOptions(e) {
 }
 
 navLinks.addEventListener('click', toggleOptions);
+
+/**
+ * difficulty selection
+ **/
+
 
 /**
  * modal toggle

@@ -224,28 +224,6 @@ main {
   outline: none;
 }
 
-footer a {
-  font-family: 'Fugaz One';
-  font-size: 1.2rem;
-  color: black;
-  text-decoration: none;
-}
-
-#nav-footer {
-  background-color: #d70000;
-  height: 2.75rem;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid red;
-}
-
-.footer-link {
-  margin: 0 1rem;
-}
-
 .modal {
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
@@ -254,8 +232,8 @@ footer a {
   position: fixed;
   top: 0;
   left: 0;
-  /* z-index: 1; */
   padding-top: 15%;
+  /* z-index: 1; */
 }
 
 .modal-content {
@@ -276,6 +254,50 @@ footer a {
   height: 20%;
   margin: 0;
   margin-top: 3%;
+}
+
+#difficulty-container {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#difficulty-heading {
+  width: 100%;
+  font-size: 1.25rem;
+  padding-bottom: 0.75rem;
+}
+
+.difficulty {
+  width: 75%;
+  font-family: 'Fugaz One';
+  font-size: 1rem;
+  background-color: #ebebeb;
+  color: black;
+  border-radius: 0.5rem;
+  border: 0.15rem solid #ebebeb;
+  margin: 0.35rem;
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.difficulty:hover {
+  background-color: black;
+  color: #ebebeb;
+}
+
+#difficulty-container input[type="radio"]:checked {
+  background-color: black;
+  color: #ebebeb;
+}
+
+.difficulty:focus {
+  outline: none;
+  /* background-color: black; */
 }
 
 #results {
@@ -320,4 +342,26 @@ footer a {
 #score-results {
   font-size: 2rem;
   padding: 2% 0;
+}
+
+footer a {
+  font-family: 'Fugaz One';
+  font-size: 1.2rem;
+  color: black;
+  text-decoration: none;
+}
+
+#nav-footer {
+  background-color: #d70000;
+  height: 2.75rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.footer-link {
+  margin: 0 1rem;
 }
