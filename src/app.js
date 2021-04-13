@@ -26,8 +26,8 @@ document.addEventListener('scroll', toggleNavLogo);
  **/
 
 function openNavLinkModals(e) {
-  console.log('~ e', e.target);
   e.preventDefault();
+  // console.log('~ e', e.target);
 
   const navModal = new Modal();
   navModal.initialize();
