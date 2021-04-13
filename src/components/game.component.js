@@ -1,3 +1,4 @@
+import { Modal } from './modal.component.js';
 // import { modal, game } from '../app.js';
 
 /**
@@ -234,16 +235,29 @@ export class Game {
   }
 
   /**
+   * if game is not active, initiate game start and render prompt
+   **/
+  handleInputFocus() {
+    if (!this.gameActive) {
+      this.gameActive = true;
+      this.time = 5;
+      this.initGameStartEnd();
+      this.renderPrompt();
+    }
+  }
+
+  /**
    * start/clear timer interval
    **/
   initGameStartEnd() {
     const timerActive = setInterval(() => {
       if (this.time < 0) {
-        clearInterval(timerActive);
-        // gameOver();
-        modal.initialize();
-        modal.gameOver();
         this.gameActive = false;
+
+        const gameOverModal = new Modal();
+        gameOverModal.initialize();
+        gameOverModal.gameOver();
+        clearInterval(timerActive);
       } else this.updateTimer();
     }, 1000);
   }

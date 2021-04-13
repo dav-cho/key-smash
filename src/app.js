@@ -3,7 +3,9 @@ import { Game } from './components/game.component.js';
 
 // export const modal = new Modal();
 // modal.initialize();
-export const game = new Game();
+// export const game = new Game();
+
+const navLinks = document.getElementById('nav-links');
 const userInput = document.getElementById('user-input');
 
 /**
@@ -22,26 +24,33 @@ function toggleNavLogo() {
   }
 }
 
-const navLinks = document.getElementById('nav-links');
+document.addEventListener('scroll', toggleNavLogo);
 navLinks.addEventListener('click', e => {
   const navModal = new Modal();
   navModal.initialize();
   navModal.showModals(e);
 });
+userInput.addEventListener('focus', () => {
+  const game = new Game();
 
-function handleInputFocus() {
-  if (!game.gameActive) {
-    game.gameActive = true;
-    game.time = 10;
+  game.gameActive = true;
+  game.time = 2;
 
-    game.initialize();
-    game.initGameStartEnd();
-    game.renderPrompt();
-  }
-}
+  game.initialize();
+  game.initGameStartEnd();
+  game.renderPrompt();
+});
 
-document.addEventListener('scroll', toggleNavLogo);
-userInput.addEventListener('focus', handleInputFocus);
+// function handleInputFocus() {
+//   if (!game.gameActive) {
+//     game.gameActive = true;
+//     game.time = 10;
+
+//     game.initialize();
+//     game.initGameStartEnd();
+//     game.renderPrompt();
+//   }
+// }
 
 /**
  *********************************************************************************************
