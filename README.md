@@ -14,6 +14,7 @@ n/a
 - HTML
 - CSS
 - Javascript
+- API
 
 ## MVP
 - As a user I want to see what my typing speed is
@@ -59,5 +60,5 @@ n/a
 
 ## Unsolved Problems / Major Hurdles
 - The letter highlighting was more intensive than I had anticipated.
-- I refactored my entire code into classes for practice, since I've never used them. That proved more challenging than expected, but was a great learning experience.
+- Refactoring my entire code into classes (I have never used them) proved more challenging than expected, but was a great learning experience.
 - I also started refactoring everything into a component based structure which I would like to finish.
