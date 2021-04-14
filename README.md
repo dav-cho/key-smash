@@ -1,4 +1,4 @@
-# Typing Speed
+# Typing Game
 
 
 ![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif)  
