@@ -26,7 +26,6 @@
     <div id="nav-links">
       <a href="" class="nav-link" id="game-mode-link">Game Mode</a>
       <a href="" class="nav-link" id="options-link">Options</a>
-      <a href="" class="nav-link" id="instructions-link">Instructions</a>
       <button id="nav-button">New Game</button>
     </div>
   </nav>
@@ -59,8 +58,8 @@
     <section id="game-mode-modal" class="modal">
       <div id="game-mode-content" class="modal-content">
         <h1>Game Mode</h1>
-        <div id="game-mode-container" class="options-container">
-          <div class="game-mode-header">Game Mode</div>
+        <div id="game-mode-container" class="options-subcontainer">
+          <div class="options-subheader">Game Mode</div>
           <button id="normal" class="options-button">Normal</button>
           <button id="challenge" class="options-button selected">Challenge</button>
           <button id="accuracy" class="options-button">Accuracy</button>
@@ -71,19 +70,17 @@
     <section id="options-modal" class="modal">
       <div id="options-content" class="modal-content">
         <h1>Options</h1>
-        <div id="options-container">
-          <div id="difficulty-container" class="options-container">
-            <div class="options-header">Difficulty</div>
-            <button id="easy" class="options-button selected">Easy</button>
-            <button id="medium" class="options-button">Medium</button>
-            <button id="hard" class="options-button">Hard</button>
-          </div>
-          <div id="time-container" class="options-container">
-            <div class="options-header">Time</div>
-            <button id="30" class="options-button selected">00:30</button>
-            <button id="60" class="options-button">01:00</button>
-            <button id="90" class="options-button">01:30</button>
-          </div>
+        <div id="difficulty-container" class="options-subcontainer">
+          <div class="options-subheader">Difficulty</div>
+          <button id="easy" class="options-button selected">Easy</button>
+          <button id="medium" class="options-button">Medium</button>
+          <button id="hard" class="options-button">Hard</button>
+        </div>
+        <div id="time-container" class="options-subcontainer">
+          <div class="options-subheader">Time</div>
+          <button id="30" class="options-button selected">00:30</button>
+          <button id="60" class="options-button">01:00</button>
+          <button id="90" class="options-button">01:30</button>
         </div>
       </div>
     </section>
@@ -91,18 +88,17 @@
     <section id="game-over-modal" class="modal">
       <div id="game-over-content" class="modal-content">
         <h1>GAME OVER</h1>
-        <div id="high-score-container">High Score:
-          <div id="high-score"></div>
+        <div class="results-subcontainer">
+          <div class="results-subheader">Word Count</div>
+          <div id="word-count-results"></div>
         </div>
-        <div id="results">
-          <div class="results-container">
-            <div class="results-header">Word Count</div>
-            <div id="word-count-results"></div>
-          </div>
-          <div class="results-container">
-            <div class="results-header">Score</div>
-            <div id="score-results"></div>
-          </div>
+        <div class="results-subcontainer">
+          <div class="results-subheader">Score</div>
+          <div id="score-results"></div>
+        </div>
+        <div class="results-subcontainer">
+          <div class="results-subheader">High Score</div>
+          <div id="high-score"></div>
         </div>
       </div>
     </section>
