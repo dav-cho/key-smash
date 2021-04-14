@@ -33,11 +33,11 @@ n/a
 |      Day      |            Deliverable           |   Status   |     
 |---------------|----------------------------------|:----------:|
 | April 7       | Project Proposal                 |  Complete  |
-| April 8       | README / Wireframes / Find API   | Incomplete |
-| April 9       | Initial HTML, CSS & Javascript   | Incomplete |
-| April 10 - 11 | JS Functionality & API Calls     | Incomplete |
-| April 12      | JS Functionality / Stretch Goals | Incomplete |
-| April 13      | Final Review / Touches           | Incomplete |
+| April 8       | README / Wireframes / Find API   |  Complete  |
+| April 9       | Initial HTML, CSS & Javascript   |  Complete  |
+| April 10 - 11 | JS Functionality & API Calls     |  Complete  |
+| April 12      | JS Functionality / Stretch Goals |  Complete  |
+| April 13      | Final Review / Touches           |  Complete  |
 | April 14      | Present                          | Incomplete |
 
 ## Timeframes
