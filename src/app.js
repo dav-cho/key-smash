@@ -17,34 +17,6 @@ function toggleNavLogo() {
 document.addEventListener('scroll', toggleNavLogo);
 
 /**
- * toggle footer on hover
- **/
-const navFooter = document.getElementById('nav-footer');
-
-function toggleFooter(e) {
-  if (e.type === 'mouseenter') {
-    navFooter.style.opacity = 1;
-  } else {
-    setTimeout(() => (navFooter.style.opacity = 0), 1000);
-  }
-
-  const footerGameMode = document.getElementById('footer-game-mode');
-  const footerDifficulty = document.getElementById('footer-difficulty');
-  const footerTime = document.getElementById('footer-time');
-
-  footerGameMode.innerText = game.gameMode;
-  footerDifficulty.innerText = game.difficulty;
-  footerTime.innerText = game.time;
-}
-
-navFooter.addEventListener('mouseenter', toggleFooter);
-navFooter.addEventListener('mouseleave', toggleFooter);
-
-/**
- * footer display
- **/
-
-/**
  ***** Game **********************************************************************************
  **/
 class Game {
@@ -100,15 +72,16 @@ class Game {
     });
   }
 
-
-/**
- * new game
- **/
-newGame() {
-  this.getGameOptions();
-  this.wordCount = 0;
-  this.score = 0;
-}
+  /**
+   * new game
+   **/
+  newGame() {
+    this.getGameOptions();
+    this.wordCount = 0;
+    this.wordCountDisplay.innerText = '0000';
+    this.score = 0;
+    this.scoreDisplay.innerText = '0000';
+  }
 
   /**
    * fetch quotes from inspirational quotes API
@@ -311,7 +284,6 @@ newGame() {
   handleInputFocus() {
     if (!this.gameActive) {
       this.gameActive = true;
-      // this.time = 5;
       this.newGame();
       this.initGameStartEnd();
       this.renderPrompt();
@@ -327,6 +299,7 @@ newGame() {
         this.gameActive = false;
         clearInterval(timerActive);
         modal.gameOver();
+        prompt.innerHTML = '';
       } else this.updateTimer();
     }, 1000);
   }
@@ -390,9 +363,12 @@ class Modal {
     this.navLinks.addEventListener('click', this.showModals.bind(this));
     this.gameModeModal.addEventListener(
       'click',
-      this.selectGameMode.bind(this)
+      this.highlightButtons.bind(this)
     );
-    this.optionsModal.addEventListener('click', this.selectOptions.bind(this));
+    this.optionsModal.addEventListener(
+      'click',
+      this.highlightButtons.bind(this)
+    );
     window.addEventListener('click', this.hideModals.bind(this));
   }
 
@@ -412,37 +388,32 @@ class Modal {
   }
 
   /**
-   * select game mode
-   **/
-  selectGameMode(e) {
-    this.highlightButtons(e);
-
-    // if (e.target.tagName === 'BUTTON') game.gameMode = e.target.id;
-  }
-
-  /**
-   * difficulty selection
-   **/
-  selectOptions(e) {
-    this.highlightButtons(e);
-
-    // if (+e.target.id) game.time = +e.target.id;
-    // else if (e.target.tagName === 'BUTTON') game.difficulty = e.target.id;
-  }
-
-  /**
    * button highlights
    **/
   highlightButtons(e) {
     const parent = e.target.parentElement.childNodes;
 
-    parent.forEach(child => {
-      if (child.tagName === 'BUTTON' && child.classList.contains('selected')) {
-        child.classList.remove('selected');
-      }
-    });
+    if (e.target.tagName === 'BUTTON') {
+      parent.forEach(child => {
+        if (
+          child.tagName === 'BUTTON' &&
+          child.classList.contains('selected')
+        ) {
+          child.classList.remove('selected');
+        }
+      });
 
-    e.target.classList.add('selected');
+      e.target.classList.add('selected');
+    }
+
+    if (
+      e.target.id === 'normal' ||
+      e.target.id === 'challenge' ||
+      e.target.id === 'accuracy'
+    ) {
+      const gameModeHeader = document.getElementById('game-mode-header');
+      gameModeHeader.innerText = `${e.target.id.toUpperCase()} MODE`;
+    }
   }
 
   /**
@@ -462,9 +433,11 @@ class Modal {
    * hide modal toggle
    **/
   hideModals(e) {
-    this.modals.forEach(modal => {
-      if (e.target === modal) modal.style.display = 'none';
-    });
+    if (e.target.classList.contains('modal')) {
+      this.modals.forEach(modal => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    }
   }
 }
 
@@ -477,3 +450,27 @@ game.initialize();
 
 const modal = new Modal();
 modal.initialize();
+
+/**
+ * toggle footer on hover
+ **/
+const navFooter = document.getElementById('nav-footer');
+
+function toggleFooter(e) {
+  if (e.type === 'mouseenter') {
+    navFooter.style.opacity = 1;
+  } else {
+    setTimeout(() => (navFooter.style.opacity = 0), 1000);
+  }
+
+  const footerGameMode = document.getElementById('footer-game-mode');
+  const footerDifficulty = document.getElementById('footer-difficulty');
+  const footerTime = document.getElementById('footer-time');
+
+  footerGameMode.innerText = game.gameMode;
+  footerDifficulty.innerText = game.difficulty;
+  footerTime.innerText = game.time;
+}
+
+navFooter.addEventListener('mouseenter', toggleFooter);
+navFooter.addEventListener('mouseleave', toggleFooter);
