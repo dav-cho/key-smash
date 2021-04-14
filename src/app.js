@@ -379,7 +379,7 @@ class Modal {
   }
 }
 
-let game = new Game();
+const game = new Game();
 game.initialize();
 
 const modal = new Modal();
