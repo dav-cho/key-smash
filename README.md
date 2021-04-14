@@ -60,5 +60,5 @@ n/a
 
 ## Unsolved Problems / Major Hurdles
 - The letter highlighting was more intensive than I had anticipated.
-- Refactoring my entire code into classes (I have never used them) proved more challenging than expected, but was a great learning experience.
+- Refactoring my entire code into classes (I have never used them) was also a challenge, but was a great learning experience.
 - I also started refactoring everything into a component based structure which I would like to finish.
