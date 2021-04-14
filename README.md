@@ -1,21 +1,31 @@
 # Typing Speed
 
 ## App Screenshot
+![Key Smash Screen Shot](/proposal/screen-shot.jpg)
 
 
-
-![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif =100px)  
+![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif)  
 Me after project week.
 ## Installation Instructions
+n/a
 
-## MVP / User Stories
+## Technologies Used
+- HTML
+- CSS
+- Javascript
+
+## MVP
+- As a user I want to see what my typing speed is
+- As a user I want to have fun while practicing typing
 
 ## Post-MVP / Stretch Goals
+- Letter highlighting
+- Different game modes
+- Game options (difficulty/content)
 
 ## Wireframes
 ![App Wireframe](/proposal/main-page-wireframe.png)
 
-## Technologies Used
 
 ## Project Schedule
 |      Day      |            Deliverable           |   Status   |     
@@ -33,21 +43,20 @@ Me after project week.
 |----------------------|:--------:|:--------------:|:-------------:|:-----------:|
 | Project Proposal     |    H     |     2 hrs      |     2 hrs     |    2 hrs    |
 | README.md            |    H     |     2 hrs      |     1 hrs     |    1 hrs    |
-| Wireframing          |    M     |     2 hrs      |     2 hrs     |    2 hrs    |
-| Initial HTML & CSS   |    M     |     2 hrs      |     3 hrs     |    3 hrs    |
-| Basic JS             |    H     |     3 hrs      |     1 hrs     |    1 hrs    |
-| User Text Input      |    H     |     3 hrs      |     1 hrs     |    1 hrs    |
-| Typing Prompt        |    H     |     6 hrs      |     1 hrs     |    1 hrs    |
-| Word Counter         |    H     |     1 hrs      |     x hrs     |    x hrs    |
-| Timer                |    H     |     2 hrs      |     x hrs     |    x hrs    |
-| Mistakes/Accuracy    |    L     |     1 hrs      |     x hrs     |    x hrs    |
-| API Research         |    L     |     1 hrs      |     x hrs     |    x hrs    |
-| API Calls            |    L     |     4 hrs      |     x hrs     |    x hrs    |
-| Typing Stats Cards   |    L     |     4 hrs      |     x hrs     |    x hrs    |
-| Modals               |    L     |     3 hrs      |     x hrs     |    x hrs    |
-| CSS                  |    H     |     5 hrs      |     x hrs     |    x hrs    |
-| Totals               |    x     |     35 hrs     |     10 hrs    |    10 hrs   |
-
-## Code Snippet
+| Wireframing          |    M     |     2 hrs      |     1 hrs     |    1 hrs    |
+| Initial HTML & CSS   |    M     |     2 hrs      |     1 hrs     |    1 hrs    |
+| Basic JS             |    H     |     3 hrs      |     2 hrs     |    2 hrs    |
+| Typing Prompt        |    H     |     4 hrs      |     6 hrs     |    6 hrs    |
+| Word Counter         |    H     |     1 hrs      |     0 hrs     |    0 hrs    |
+| Timer                |    H     |     2 hrs      |     1 hrs     |    1 hrs    |
+| API Research         |    L     |     1 hrs      |     1 hrs     |    1 hrs    |
+| API Calls            |    L     |     1 hrs      |     0 hrs     |    0 hrs    |
+| Typing Stats Cards   |    L     |     4 hrs      |     1 hrs     |    1 hrs    |
+| Modals               |    L     |     3 hrs      |     2 hrs     |    2 hrs    |
+| CSS                  |    H     |     5 hrs      |     2 hrs     |    2 hrs    |
+| Totals               |    x     |     35 hrs     |     20 hrs    |    20 hrs   |
 
 ## Unsolved Problems / Major Hurdles
+- The letter highlighting was more intensive than I had anticipated.
+- I refactored my entire code into classes for practice, since I've never used them. That proved more challenging than expected, but was a great learning experience.
+- I also started refactoring everything into a component based structure which I would like to finish.

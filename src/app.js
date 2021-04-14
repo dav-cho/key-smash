@@ -298,9 +298,6 @@ class Modal {
     this.optionsModal = null;
     this.timeContainer = null;
     this.modals = null;
-
-    this.difficulty = null;
-    this.time = null;
   }
 
   initialize() {
