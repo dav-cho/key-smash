@@ -1,6 +1,3 @@
-/**
- * toggle nav logo on scroll
- **/
 function toggleNavLogo() {
   const navLogoImg = document.getElementById('nav-logo-img');
   const navLogoText = document.getElementById('nav-logo-text');
@@ -16,12 +13,8 @@ function toggleNavLogo() {
 
 document.addEventListener('scroll', toggleNavLogo);
 
-/**
- ***** Game **********************************************************************************
- **/
 class Game {
   constructor() {
-    // dom selectors
     this.prompt = null;
     this.currentPrompt = null;
     this.userInput = null;
@@ -30,7 +23,6 @@ class Game {
     this.scoreDisplay = null;
     this.optionsButtons = null;
 
-    // game stat properties
     this.gameMode = null;
     this.difficulty = null;
     this.time = null;
@@ -42,7 +34,6 @@ class Game {
   }
 
   initialize() {
-    // initialize dom selectors
     this.prompt = document.getElementById('prompt');
     this.currentPrompt = this.prompt.childNodes;
     this.userInput = document.getElementById('user-input');
@@ -51,15 +42,11 @@ class Game {
     this.scoreDisplay = document.getElementById('score');
     this.optionsButtons = document.querySelectorAll('.options-button');
 
-    // event listeners
     this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
   }
 
-  /**
-   * get game options
-   **/
   getGameOptions() {
     this.optionsButtons.forEach(button => {
       if (button.classList.contains('selected')) {
@@ -72,9 +59,6 @@ class Game {
     });
   }
 
-  /**
-   * new game
-   **/
   newGame() {
     this.getGameOptions();
     this.wordCount = 0;
@@ -83,9 +67,6 @@ class Game {
     this.scoreDisplay.innerText = '0000';
   }
 
-  /**
-   * fetch quotes from inspirational quotes API
-   **/
   async getPrompt() {
     try {
       const res = await fetch('https://type.fit/api/quotes');
@@ -101,13 +82,9 @@ class Game {
     }
   }
 
-  /**
-   * render prompt
-   **/
   async renderPrompt() {
     const words = await this.getPrompt();
 
-    // clear prompt tiles if there are any
     if (this.currentPrompt.length) {
       this.prompt.innerHTML = '';
     }
@@ -126,9 +103,6 @@ class Game {
     });
   }
 
-  /**
-   * clear prompt letter highlights on word match
-   **/
   clearPromptHighlights() {
     this.currentPrompt.forEach(promptTile => {
       promptTile.childNodes.forEach(letterSpan => {
@@ -139,9 +113,6 @@ class Game {
     });
   }
 
-  /**
-   * change word count display
-   **/
   updateWordCount() {
     this.wordCount++;
 
@@ -154,9 +125,6 @@ class Game {
       : (this.wordCountDisplay.innerText = `${this.wordCount}`);
   }
 
-  /**
-   * timer function (setInterval in initGameStartEnd)
-   **/
   updateTimer() {
     const minutes = Math.floor(this.time / 60);
     const seconds = this.time % 60;
@@ -175,7 +143,6 @@ class Game {
   }
 
   /**
-   * check for matched words and update score
    * scoring system based on scrabble (uppercase letters get ~1.5x)
    **/
   updateScore() {
@@ -212,16 +179,12 @@ class Game {
       : (this.scoreDisplay.innerText = `${this.score}`);
   }
 
-  /**
-   * check current score after word match
-   **/
   updateHighScore() {
     if (this.score > this.highScore) this.highScore = this.score;
   }
 
   /**
    * highlight prompt letters matching user input
-   * TODO: fix delete glitches
    **/
   handleInput(e) {
     if (e.data && this.gameActive) {
@@ -258,7 +221,6 @@ class Game {
 
   /**
    * check for matching word / remove prompTile if word matches,
-   * updateWordCount, clearPromptHighlights, userInput to null, clear currentWordArray
    **/
   handleEnter(e) {
     if ((e.key === 'Enter' || e.key === ' ') && this.gameActive) {
@@ -305,24 +267,18 @@ class Game {
   }
 }
 
-/**
- ***** Results *******************************************************************************
- **/
 class Results {
   constructor(currentGame) {
-    // dom selectors
     this.wordCountResults = null;
     this.scoreResults = null;
     this.highScoreResults = null;
 
-    // result properties
     this.wordCount = currentGame.wordCount;
     this.score = currentGame.score;
     this.highScore = currentGame.highScore;
   }
 
   initialize() {
-    // initialize dom selectors
     this.wordCountResults = document.getElementById('word-count-results');
     this.scoreResults = document.getElementById('score-results');
     this.highScoreResults = document.getElementById('high-score');
@@ -335,31 +291,24 @@ class Results {
   }
 }
 
-/**
- ***** Modals ********************************************************************************
- **/
 class Modal {
   constructor() {
-    // dom selectors
     this.navLinks = null;
     this.gameModeModal = null;
     this.optionsModal = null;
     this.timeContainer = null;
     this.modals = null;
 
-    // modal properties
     this.difficulty = null;
     this.time = null;
   }
 
   initialize() {
-    // initialize dom selectors
     this.navLinks = document.getElementById('nav-links');
     this.gameModeModal = document.getElementById('game-mode-modal');
     this.optionsModal = document.getElementById('options-modal');
     this.modals = document.querySelectorAll('.modal');
 
-    // event listeners
     this.navLinks.addEventListener('click', this.showModals.bind(this));
     this.gameModeModal.addEventListener(
       'click',
@@ -372,9 +321,6 @@ class Modal {
     window.addEventListener('click', this.hideModals.bind(this));
   }
 
-  /**
-   * toggle modals
-   **/
   showModals(e) {
     e.preventDefault();
 
@@ -387,9 +333,6 @@ class Modal {
     }
   }
 
-  /**
-   * button highlights
-   **/
   highlightButtons(e) {
     const parent = e.target.parentElement.childNodes;
 
@@ -416,10 +359,6 @@ class Modal {
     }
   }
 
-  /**
-   * gameOver: stops timer, toggles results modal and gameActive to false
-   * TODO: move to Game class?
-   **/
   gameOver() {
     const modalGameOver = document.getElementById('game-over-modal');
     modalGameOver.style.display = 'block';
@@ -429,9 +368,6 @@ class Modal {
     result.displayResults();
   }
 
-  /**
-   * hide modal toggle
-   **/
   hideModals(e) {
     if (e.target.classList.contains('modal')) {
       this.modals.forEach(modal => {
@@ -441,10 +377,6 @@ class Modal {
   }
 }
 
-/**
- *********************************************************************************************
- **/
-
 const game = new Game();
 game.initialize();
 
@@ -452,7 +384,7 @@ const modal = new Modal();
 modal.initialize();
 
 /**
- * toggle footer on hover
+ * TODO: toggle footer on hover
  **/
 const navFooter = document.getElementById('nav-footer');
 
