@@ -1,7 +1,7 @@
 # Typing Speed
 
 ## App Screenshot
-![Key Smash Screen Shot](/proposal/screen-shot.jpg)
+![Key Smash Screen Shot](/proposal/screen-shot.png)
 
 
 ![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif)  
