@@ -381,7 +381,7 @@ const modal = new Modal();
 modal.initialize();
 
 /**
- * TODO: toggle footer on hover
+ * toggle footer on hover
  **/
 const navFooter = document.getElementById('nav-footer');
 
@@ -391,14 +391,6 @@ function toggleFooter(e) {
   } else {
     setTimeout(() => (navFooter.style.opacity = 0), 1000);
   }
-
-  const footerGameMode = document.getElementById('footer-game-mode');
-  const footerDifficulty = document.getElementById('footer-difficulty');
-  const footerTime = document.getElementById('footer-time');
-
-  footerGameMode.innerText = game.gameMode;
-  footerDifficulty.innerText = game.difficulty;
-  footerTime.innerText = game.time;
 }
 
 navFooter.addEventListener('mouseenter', toggleFooter);
