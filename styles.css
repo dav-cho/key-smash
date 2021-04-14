@@ -99,6 +99,10 @@ header {
   -webkit-transform: scale(1.05);
 }
 
+#nav-button:focus {
+  outline: none;
+}
+
 main {
   margin-bottom: 10rem;
 }

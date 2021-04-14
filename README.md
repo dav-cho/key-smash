@@ -59,6 +59,7 @@ n/a
 | Totals               |    x     |     35 hrs     |     20 hrs    |    20 hrs   |
 
 ## Unsolved Problems / Major Hurdles
+- As my first build, planning out how to approach/structure this project was the most challenging. Implementing design changes and changing direction were key stress points.
 - The letter highlighting was more intensive than I had anticipated.
 - Refactoring my entire code into classes (I have never used them) was also a challenge, but was a great learning experience.
 - I also started refactoring everything into a component based structure which I would like to finish.

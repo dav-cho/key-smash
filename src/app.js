@@ -371,10 +371,15 @@ class Modal {
         if (e.target === modal) modal.style.display = 'none';
       });
     }
+
+    if (e.target.id === 'nav-button') {
+      game.time = 0;
+      game.prompt.innerHTML = '';
+    }
   }
 }
 
-const game = new Game();
+let game = new Game();
 game.initialize();
 
 const modal = new Modal();
