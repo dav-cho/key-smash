@@ -42,6 +42,7 @@ class Game {
     this.scoreDisplay = document.getElementById('score');
     this.optionsButtons = document.querySelectorAll('.options-button');
 
+    // TODO: turn handle functions into arrow functions to avoid binding
     this.userInput.addEventListener('focus', this.handleInputFocus.bind(this));
     this.userInput.addEventListener('input', this.handleInput.bind(this));
     this.userInput.addEventListener('keydown', this.handleEnter.bind(this));
