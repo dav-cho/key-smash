@@ -2,7 +2,7 @@
 
 
 ## App Screenshot
-![Key Smash Screen Shot](/proposal/screen-shot.png)
+![Key Smash Screen Shot](/proposal/screenshot-1.png)
 
 ## Installation Instructions
 n/a
