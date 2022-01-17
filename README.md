@@ -1,9 +1,6 @@
 # Typing Game
 
 
-![Jack Nicholson frozen in The Shining](/proposal/winter-1.gif)  
-Me after project week.
-
 ## App Screenshot
 ![Key Smash Screen Shot](/proposal/screen-shot.png)
 
